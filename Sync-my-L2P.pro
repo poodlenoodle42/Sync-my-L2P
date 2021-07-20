@@ -11,7 +11,7 @@ TEMPLATE_FILES = include/version.h.template \
 template_compiler.input = TEMPLATE_FILES
 template_compiler.output  = ${QMAKE_FILE_IN_PATH}/${QMAKE_FILE_IN_BASE}
 template_compiler.depends = ${QMAKE_FILE_IN} Sync-my-L2P.pro
-win32|win64 {
+win32 {
     template_compiler.commands = powershell -Command \"(Get-Content -Encoding utf8 \\\"${QMAKE_FILE_IN}\\\").Replace(\\\"__PRODUCT_VERSION_CODE\\\",\\\"$$VERSION_CODE\\\").Replace(\\\"__PRODUCT_VERSION\\\",\\\"$$VERSION\\\") | Set-Content -Encoding utf8 -Path ${QMAKE_FILE_OUT}\"
 }
 unix {
