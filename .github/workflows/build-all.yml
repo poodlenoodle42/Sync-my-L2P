@@ -21,9 +21,16 @@ jobs:
       matrix:
         config:
         - {
-            name: "Windows",
-            artifact: "$ENV{PRODUCT_NAME}-PRODUCT_VERSION-windows.exe",
-            os: windows-2019
+            name: "Windows x64",
+            artifact: "$ENV{PRODUCT_NAME}-PRODUCT_VERSION-windows-x64.exe",
+            os: windows-2019,
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+          }
+        - {
+            name: "Windows x86",
+            artifact: "$ENV{PRODUCT_NAME}-PRODUCT_VERSION-windows-x86.exe",
+            os: windows-2019,
+            environment_script: "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars32.bat"
           }
         - {
             name: "Linux",
@@ -86,8 +93,13 @@ jobs:
         string(REPLACE "." "" qt_version_dotless "${qt_version}")
         if ("${{ runner.os }}" STREQUAL "Windows")
           set(url_os "windows_x86")
-          set(qt_package_name "qt.qt5.${qt_version_dotless}.win64_msvc2019_64")
-          set(qt_dir_prefix "${qt_version}/msvc2019_64")
+          if ("${{ matrix.config.environment_script }}" MATCHES "vcvars64.bat")
+            set(qt_package_name "qt.qt5.${qt_version_dotless}.win64_msvc2019_64")
+            set(qt_dir_prefix "${qt_version}/msvc2019_64")
+          elseif ("${{ matrix.config.environment_script }}" MATCHES "vcvars32.bat")
+            set(qt_package_name "qt.qt5.${qt_version_dotless}.win32_msvc2019")
+            set(qt_dir_prefix "${qt_version}/msvc2019")
+          endif()
         elseif ("${{ runner.os }}" STREQUAL "Linux")
           set(url_os "linux_x64")
           set(qt_package_name "qt.qt5.${qt_version_dotless}.gcc_64")
@@ -107,6 +119,11 @@ jobs:
         set(package_version ${CMAKE_MATCH_1})
         set(package_suffix ${CMAKE_MATCH_2})
         string(REPLACE "-debug-symbols" "" package_suffix "${package_suffix}")
+
+        # Workaround for CMake's greedy regex
+        if ("${{ matrix.config.environment_script }}" MATCHES "vcvars32.bat")
+          string(REPLACE "X86_64" "X86" package_suffix "${package_suffix}")
+        endif()
 
         file(MAKE_DIRECTORY qt5)
 
@@ -140,8 +157,13 @@ jobs:
       if: runner.os == 'Windows'
       shell: cmake -P {0}
       run: |
-        set(qt_package_name "qt.tools.openssl.win_x64")
-        set(qt_package_folder "tools_openssl_x64")
+        if ("${{ matrix.config.environment_script }}" MATCHES "vcvars64.bat")
+          set(qt_package_name "qt.tools.openssl.win_x64")
+          set(qt_package_folder "tools_openssl_x64")
+        elseif ("${{ matrix.config.environment_script }}" MATCHES "vcvars32.bat")
+          set(qt_package_name "qt.tools.openssl.win_x86")
+          set(qt_package_folder "tools_openssl_x86")
+        endif()
 
         set(qt_base_url "https://download.qt.io/online/qtsdkrepository/windows_x86/desktop/${qt_package_folder}")
         file(DOWNLOAD "${qt_base_url}/Updates.xml" ./Updates.xml SHOW_PROGRESS)
@@ -152,6 +174,11 @@ jobs:
         set(package_version ${CMAKE_MATCH_1})
         set(package_name ${CMAKE_MATCH_2})
         string(REPLACE "-debug-symbols" "" package_name "${package_name}")
+
+        # Workaround for CMake's greedy regex
+        if ("${{ matrix.config.environment_script }}" MATCHES "vcvars32.bat")
+          string(REPLACE "X86_64" "X86" package_name "${package_name}")
+        endif()
 
         file(DOWNLOAD
           "${qt_base_url}/${qt_package_name}/${package_version}${package_name}.7z" ./openssl.7z
@@ -176,7 +203,11 @@ jobs:
 
         if ("${{ runner.os }}" STREQUAL "Windows")
           set(qtc_output_directory "bin")
-          set(qtc_platform "windows_x64")
+          if ("${{ matrix.config.environment_script }}" MATCHES "vcvars64.bat")
+            set(qtc_platform "windows_x64")
+          elseif ("${{ matrix.config.environment_script }}" MATCHES "vcvars32.bat")
+            set(qtc_platform "windows_x86")
+          endif()
         elseif ("${{ runner.os }}" STREQUAL "Linux")
           set(qtc_output_directory "bin")
           set(qtc_platform "linux_x64")
@@ -254,9 +285,9 @@ jobs:
           set(ENV{LD_LIBRARY_PATH} "${{ steps.qt_creator.outputs.qtc_directory }}/lib/qtcreator/plugins:$ENV{LD_LIBRARY_PATH}")
         endif()
 
-        if ("${{ runner.os }}" STREQUAL "Windows")
+        if ("${{ runner.os }}" STREQUAL "Windows" AND NOT "x${{ matrix.config.environment_script }}" STREQUAL "x")
           execute_process(
-            COMMAND "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat" && set
+            COMMAND "${{ matrix.config.environment_script }}" && set
             OUTPUT_FILE environment_script_output.txt
           )
           file(STRINGS environment_script_output.txt output_lines)
@@ -293,16 +324,18 @@ jobs:
       shell: cmake -P {0}
       run: |
         if ("${{ runner.os }}" STREQUAL "Windows")
-          execute_process(
-            COMMAND "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/VC/Auxiliary/Build/vcvars64.bat" && set
-            OUTPUT_FILE environment_script_output.txt
-          )
-          file(STRINGS environment_script_output.txt output_lines)
-          foreach(line IN LISTS output_lines)
-            if (line MATCHES "^([a-zA-Z0-9_-]+)=(.*)$")
-              set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
-            endif()
-          endforeach()
+          if (NOT "x${{ matrix.config.environment_script }}" STREQUAL "x")
+            execute_process(
+              COMMAND "${{ matrix.config.environment_script }}" && set
+              OUTPUT_FILE environment_script_output.txt
+            )
+            file(STRINGS environment_script_output.txt output_lines)
+            foreach(line IN LISTS output_lines)
+              if (line MATCHES "^([a-zA-Z0-9_-]+)=(.*)$")
+                set(ENV{${CMAKE_MATCH_1}} "${CMAKE_MATCH_2}")
+              endif()
+            endforeach()
+          endif()
           set(ENV{PATH} "${{ steps.qt.outputs.qt_dir }}/bin/;$ENV{PATH}")
         else()
           set(ENV{PATH} "${{ steps.qt.outputs.qt_dir }}/bin/:$ENV{PATH}")
@@ -358,11 +391,17 @@ jobs:
             message(FATAL_ERROR "Bad exit status")
           endif()
 
+          if ("${{ matrix.config.environment_script }}" MATCHES "vcvars64.bat")
+            set(installer_platform "windows-x64")
+          elseif ("${{ matrix.config.environment_script }}" MATCHES "vcvars32.bat")
+            set(installer_platform "windows")
+          endif()
+
           execute_process(
             COMMAND ./installbuilder/bin/builder-cli.exe
               build
               ./windows/SyncMyL2P.xml
-              windows-x64
+              ${installer_platform}
               --license ./installbuilder/license.xml
               --verbose
             RESULT_VARIABLE result
@@ -371,7 +410,7 @@ jobs:
             message(FATAL_ERROR "Bad exit status")
           endif()
 
-          file(RENAME "./windows/build/$ENV{PRODUCT_NAME}-${{ steps.version.outputs.humanreadable }}-windows-x64-installer.exe" "${artifact_path}")
+          file(RENAME "./windows/build/$ENV{PRODUCT_NAME}-${{ steps.version.outputs.humanreadable }}-${installer_platform}-installer.exe" "${artifact_path}")
 
         elseif ("${{ runner.os }}" STREQUAL "Linux")
           set(ENV{PATH} "${{ steps.qt.outputs.qt_dir }}/bin/:$ENV{PATH}")
@@ -504,8 +543,13 @@ jobs:
       matrix:
         config:
         - {
-            name: "Windows",
-            artifact: "$ENV{PRODUCT_NAME}-PRODUCT_VERSION-windows.exe",
+            name: "Windows x64",
+            artifact: "$ENV{PRODUCT_NAME}-PRODUCT_VERSION-windows-x64.exe",
+            os: ubuntu-latest
+          }
+        - {
+            name: "Windows x86",
+            artifact: "$ENV{PRODUCT_NAME}-PRODUCT_VERSION-windows-x86.exe",
             os: ubuntu-latest
           }
         - {
