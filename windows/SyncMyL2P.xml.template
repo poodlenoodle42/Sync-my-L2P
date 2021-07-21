@@ -105,10 +105,10 @@
                             <origin>../bin/vc_redist.x86.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../qt5/Tools/OpenSSL/Win_x86/bin/libcrypto-1_1.dll</origin>
+                            <origin>../windows/lib/libcrypto-1_1.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../qt5/Tools/OpenSSL/Win_x86/bin/libssl-1_1.dll</origin>
+                            <origin>../windows/lib/libssl-1_1.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
@@ -170,10 +170,10 @@
                             <origin>../bin/vc_redist.x64.exe</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../qt5/Tools/OpenSSL/Win_x64/bin/libcrypto-1_1-x64.dll</origin>
+                            <origin>../windows/lib/libcrypto-1_1-x64.dll</origin>
                         </distributionFile>
                         <distributionFile>
-                            <origin>../qt5/Tools/OpenSSL/Win_x64/bin/libssl-1_1-x64.dll</origin>
+                            <origin>../windows/lib/libssl-1_1-x64.dll</origin>
                         </distributionFile>
                     </distributionFileList>
                 </folder>
