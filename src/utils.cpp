@@ -6,6 +6,7 @@
 #include <QFileInfo>
 #include <QLinkedList>
 #include <QScreen>
+#include <QOperatingSystemVersion>
 
 #include "utils.h"
 #include "urls.h"
@@ -43,7 +44,7 @@ QString Utils::getElementLocalPath(Structureelement *item, QString downloadDirec
         while ((parent = (Structureelement*) parent->parent()) != 0)
         {
             auto element_text = parent->text();
-            if(element_text.length() > 75)
+            if(element_text.length() > 75 && !Utils::longPathsSupported())
                 element_text = element_text.left(75).trimmed();
             while (element_text.endsWith(".")) {
                 element_text.chop(1);
@@ -284,4 +285,12 @@ void Utils::checkAllFilesIfSynchronised(QList<Structureelement*> items, QString 
             }
 
     }
+}
+
+/// check whether the OS supports long paths
+bool Utils::longPathsSupported()
+{
+    const auto osVersion = QOperatingSystemVersion::current();
+    return osVersion.type() != QOperatingSystemVersion::Windows
+        || osVersion >= QOperatingSystemVersion(QOperatingSystemVersion::Windows, 10, 0, 1607);
 }

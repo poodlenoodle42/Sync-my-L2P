@@ -7,7 +7,6 @@
 
 #include <QThread>
 #include <QTextCodec>
-#include <QSysInfo>
 
 #include <QStandardPaths>
 #include <QEventLoop>
@@ -160,7 +159,13 @@ void Browser::on_syncPushButton_clicked()
 
     QItemSelection newSelection;
     ui->dataTreeView->collapseAll();
-    bool hasShownLongPathError = false;
+
+#ifdef _WIN32
+    const bool oldWindowsVersion = !Utils::longPathsSupported();
+    const auto longPathsSetting = this->options->getLongPathsSetting();
+    bool showLongPathDialog = longPathsSetting == Options::longPaths::ask;
+    bool downloadLongPathFiles = longPathsSetting == Options::longPaths::download;
+#endif
 
     foreach(Structureelement *currentElement, elementList)
     {
@@ -178,17 +183,48 @@ void Browser::on_syncPushButton_clicked()
         QString directoryPath = Utils::getElementLocalPath(currentElement, downloadPath, false, false);
         QDir directory(directoryPath);
 
-        // prevent creation of paths with a length of more than 260 characters
-        if((directoryPath.length() + currentElement->text().length()) > 260 && QSysInfo::productType() == "windows")
+#ifdef _WIN32
+        // handle too long path name on older Windows versions
+        const int pathLength = directoryPath.length() + currentElement->text().length();
+        if (oldWindowsVersion && pathLength > 260)
         {
-            if(!hasShownLongPathError)
+            if(showLongPathDialog)
             {
-                Utils::errorMessageBox(tr("Pfad zu lang!"), tr("Pfad zur Datei enthält mehr als 260 Zeichen und kann daher nicht erstellt werden. "
-                                                              "Bitte ändere den Downloadverzeichnis auf einen Pfad mit weniger Zeichen! Datei wird übersprungen."));
-                hasShownLongPathError = true;
+                // ask user if 
+                const int res = Browser::pathTooLongDialog(currentElement->text());
+                bool cancel = false;
+                switch (res)
+                {
+                case QMessageBox::Yes:
+                    downloadLongPathFiles = true;
+                    break;
+                case QMessageBox::YesToAll:
+                    downloadLongPathFiles = true; 
+                    showLongPathDialog = false;
+                    break;
+                case QMessageBox::No:
+                default:
+                    downloadLongPathFiles = false;
+                    break;
+                case QMessageBox::NoToAll:
+                    downloadLongPathFiles = false; 
+                    showLongPathDialog = false;
+                    break;
+                case QMessageBox::Cancel:
+                    cancel = true;
+                    break;
+                }
+                if (cancel)
+                {
+                    break;
+                }
             }
-            continue;
+            if (!downloadLongPathFiles)
+            {
+                continue;
+            }
         }
+#endif
 
         // Ordner ggf. erstellen
         if(!directory.mkpath(directoryPath))
@@ -533,6 +569,25 @@ void Browser::setupSignalsSlots()
     connect(l2pItemModel, &L2pItemModel::loadingFinished, this, &Browser::itemModelReloadedSlot);
     connect(l2pItemModel, &L2pItemModel::showStatusMessage, this, &Browser::showStatusMessage);
 }
+
+#ifdef _WIN32
+int Browser::pathTooLongDialog(QString filename)
+{
+    if (filename.length() > 75)
+    {
+        filename = filename.left(75) + "...";
+    }
+    QMessageBox msgBox;
+    msgBox.setText(tr("Datei herunterladen?"));
+    msgBox.setInformativeText(QString(tr("Pfad zur Datei \"%1\" enthält mehr als 260 Zeichen. Wenn die Datei heruntergeladen wird, kann sie von den meisten "
+                                 "Programmen nicht geöffnet und von Windows nicht so einfach gelöscht werden. Wenn möglich, ändere dein "
+                                 "Downloadverzeichnis auf einen Pfad mit weniger Zeichen! Datei trotzdem herunterladen? (Du kannst in den Optionen das "
+                                 "Standardverhalten ändern.)")).arg(filename));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::No | QMessageBox::NoToAll | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::No);
+    return msgBox.exec();
+}
+#endif
 
 void Browser::on_openDownloadfolderPushButton_clicked()
 {

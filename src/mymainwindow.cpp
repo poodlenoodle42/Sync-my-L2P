@@ -237,24 +237,24 @@ void MyMainWindow::trayClickedSlot(QSystemTrayIcon::ActivationReason reason)
 
 // Installiert die neue Übersetzung, wenn eine andere Sprache gewählt wurde
 // Falls neue Sprachen ergänzt werden sollen, müssen diese hier und in der options.cpp ergänzt werden.
-void MyMainWindow::on_langCB_currentIndexChanged(const QString &lang){
+void MyMainWindow::on_langCB_currentIndexChanged(const int &lang){
     QLOG_INFO() << tr("wechsle Sprache auf ") << lang;
 
     qApp->removeTranslator(&m_translator);
-    if (lang == tr("Systemsprache"))
+    if (lang == ETOI(Options::language::sys))
     {
         if(!m_translator.load("sync-my-l2p_" + QLocale::system().name(), ":/lang"))
         {
             m_translator.load("sync-my-l2p_en", ":/lang");
         }
     }
-    else if (lang == "Deutsch")
+    else if (lang == ETOI(Options::language::de))
         m_translator.load("sync-my-l2p_de", ":/lang");
-    else if (lang == "English")
+    else if (lang == ETOI(Options::language::en))
        m_translator.load("sync-my-l2p_en", ":/lang");
-    else if (lang == "Lëtzebuergesch")
+    else if (lang == ETOI(Options::language::lb))
         m_translator.load("sync-my-l2p_lb", ":/lang");
-    else if (lang == "Shqip")
+    else if (lang == ETOI(Options::language::sq))
         m_translator.load("sync-my-l2p_sq", ":/lang");
     else
         m_translator.load("sync-my-l2p_en", ":/lang");

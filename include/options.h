@@ -9,8 +9,11 @@
 #include <QFile>
 
 #include "login.h"
-class Browser;
 
+// macro for converting enum to int
+#define ETOI(e) (static_cast<int>(e))
+
+class Browser;
 
 namespace Ui {
 class Options;
@@ -25,6 +28,10 @@ public:
     ~Options();
     void loadSettings();
     void saveSettings();
+
+    // Setting enums
+    enum class language {sys=0,de,en,lb,sq};
+    enum class longPaths {ask=0,download,skip};
 
     // Getter
     bool isUserDataSaveCheckBoxChecked();
@@ -43,6 +50,7 @@ public:
     bool isCheckForUpdateCheckBoxChecked();
     bool isCurrentSemesterCheckBoxChecked();
     bool isTutorDomainCheckBoxChecked();
+    longPaths getLongPathsSetting();
 
     QString getAccessToken() const;
 

@@ -6,7 +6,6 @@
 #include "logindialog.h"
 #include "info.h"
 
-
 Options::Options(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Options),
@@ -22,12 +21,16 @@ Options::Options(QWidget *parent) :
         ui->minimizeInTrayCheckBox->setEnabled(true);
 #endif
 
-    // Verfügbare Sprachen; Falls neue verfügbar, bitte hier und in der mymainwindow.cpp ergänzen!
-    ui->langCB->addItem(tr("Systemsprache"));
-    ui->langCB->addItem("Deutsch");
-    ui->langCB->addItem("English");
-    ui->langCB->addItem("Lëtzebuergesch");
-    ui->langCB->addItem("Shqip");
+    // Verfügbare Sprachen; Falls neue verfügbar, bitte hier, in options.h und in der mymainwindow.cpp ergänzen!
+    ui->langCB->insertItem(ETOI(language::sys), tr("Systemsprache"));
+    ui->langCB->insertItem(ETOI(language::de), "Deutsch");
+    ui->langCB->insertItem(ETOI(language::en), "English");
+    ui->langCB->insertItem(ETOI(language::lb), "Lëtzebuergesch");
+    ui->langCB->insertItem(ETOI(language::sq), "Shqip");
+
+    ui->longPathsCB->insertItem(ETOI(longPaths::ask), tr("Nachfragen"));
+    ui->longPathsCB->insertItem(ETOI(longPaths::download), tr("Ja"));
+    ui->longPathsCB->insertItem(ETOI(longPaths::skip), tr("Nein"));
 }
 
 Options::~Options()
@@ -75,11 +78,16 @@ void Options::loadSettings()
     ui->minimizeInTrayCheckBox->setChecked(         settings.value("minimizeInTray", false).toBool());
     ui->overrideFilesCheckBox->setChecked(          settings.value("overrideFiles", false).toBool());
     ui->checkForUpdateCheckBox->setChecked(         settings.value("checkForUpdates", true).toBool());
-    ui->currentSemesterCheckBox->setChecked(          settings.value("currentSemester", true).toBool());
+    ui->currentSemesterCheckBox->setChecked(        settings.value("currentSemester", true).toBool());
+    ui->longPathsCB->setCurrentIndex(               settings.value("longPaths", ETOI(longPaths::ask)).toInt());
+    if (Utils::longPathsSupported()) {
+        ui->longPathsLabel->setEnabled(false);
+        ui->longPathsCB->setEnabled(false);
+    }
     settings.endGroup();
 
     settings.beginGroup("language");
-    ui->langCB->setCurrentText(                     settings.value("language", "Systemsprache").toString());
+    ui->langCB->setCurrentIndex(                    settings.value("language", ETOI(language::sys)).toInt());
     settings.endGroup();
 
     login.init();
@@ -122,10 +130,11 @@ void Options::saveSettings()
     settings.setValue("overrideFiles",      ui->overrideFilesCheckBox->isChecked());
     settings.setValue("checkForUpdates",    ui->checkForUpdateCheckBox->isChecked());
     settings.setValue("currentSemester",    ui->currentSemesterCheckBox->isChecked());
+    settings.setValue("longPaths",          ui->longPathsCB->currentIndex());
     settings.endGroup();
 
     settings.beginGroup("language");
-    settings.setValue("language",           ui->langCB->currentText());
+    settings.setValue("language",           ui->langCB->currentIndex());
     settings.endGroup();
 
     if(ui->userDataSaveCheckBox->isChecked())
@@ -274,6 +283,11 @@ bool Options::isCurrentSemesterCheckBoxChecked()
     return ui->currentSemesterCheckBox->isChecked();
 }
 
+Options::longPaths Options::getLongPathsSetting()
+{
+    return static_cast<longPaths>(ui->longPathsCB->currentIndex());
+}
+
 int Options::getLoginCounter()
 {
     return loginCounter;
@@ -324,6 +338,12 @@ void Options::accessTokenChanged(QString newAccessToken)
 void Options::retranslate()
 {
     ui->retranslateUi(this);
+
+    // translate ComboBox entries
+    ui->longPathsCB->setItemText(ETOI(longPaths::ask), tr("Nachfragen"));
+    ui->longPathsCB->setItemText(ETOI(longPaths::download), tr("Ja"));
+    ui->longPathsCB->setItemText(ETOI(longPaths::skip), tr("Nein"));
+    ui->langCB->setItemText(ETOI(language::sys), tr("Systemsprache"));
 }
 
 void Options::on_aboutButton_clicked()

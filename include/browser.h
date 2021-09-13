@@ -78,6 +78,10 @@ private:
     void updateButtons();
     void setupSignalsSlots();
 
+#ifdef _WIN32
+    static int pathTooLongDialog(QString filename);
+#endif
+
     Ui::Browser *ui;
     QNetworkAccessManager   *manager;
     MySortFilterProxyModel *proxy;

@@ -23,6 +23,8 @@ public:
     static void centerWidgetOnDesktop(QWidget* widget);
 
     static void checkAllFilesIfSynchronised(QList<Structureelement *> items, QString downloadDirectory);
+
+    static bool longPathsSupported();
 private:
     explicit Utils(QObject *parent = nullptr);
 
