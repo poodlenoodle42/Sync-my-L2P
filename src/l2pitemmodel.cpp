@@ -82,33 +82,6 @@ void L2pItemModel::requestMoodleCourses()
 /**
  * @brief Request für die aktiven Module aller Kurse
  */
-void L2pItemModel::requestFeatures()
-{
-    QLOG_DEBUG() << tr("Sende Request für aktive Features");
-
-    for(auto *course : Utils::getAllCourseItems(data))
-    {
-        auto system = course->data(systemEXRole);
-        if (system == moodle) continue;
-
-        QString request_url = viewActiveFeaturesUrl %
-                                     "?accessToken=" % options->getAccessToken() %
-                                     "&cid=" % course->data(cidRole).toString();
-        QUrl url = request_url;
-        QNetworkRequest request(url);
-
-        OpenRequest openRequest = {course,
-                                   features,
-                                   QTime::currentTime(),
-                                   request};
-        requestQueue.append(openRequest);
-        numRequests++;
-    }
-}
-
-/**
- * @brief Request für die aktiven Module aller Kurse
- */
 void L2pItemModel::requestMoodleFiles()
 {
 
@@ -326,87 +299,6 @@ void L2pItemModel::addMoodleCoursesFromReply(QNetworkReply *reply)
     }
 }
 
-void L2pItemModel::addFeatureFromReply(QNetworkReply *reply, Structureelement *course)
-{
-    const auto activeFeatures = Parser::parseFeatures(reply);
-
-    QNetworkAccessManager &manager = *(new QNetworkAccessManager());
-    QObject::connect(&manager, SIGNAL(finished(QNetworkReply*)),
-                     this, SLOT(serverDataRecievedSlot(QNetworkReply*)));
-
-    if(options->isLearningMaterialsCheckBoxChecked() && activeFeatures.contains("Learning Materials"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllLearningMaterials")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isSharedLearningmaterialsCheckBoxChecked() && activeFeatures.contains("Shared Documents"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllSharedDocuments")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isAssignmentsCheckBoxChecked() && activeFeatures.contains("Assignments"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllAssignments")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isMediaLibrarysCheckBoxChecked() && activeFeatures.contains("Media Library"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllMediaLibraries")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isAnnouncementAttachmentsCheckBoxChecked() && activeFeatures.contains("Announcements"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllAnnouncements")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isEmailAttachmentsCheckBoxChecked() && activeFeatures.contains("Emails"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllEmails")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isTutorDomainCheckBoxChecked() && activeFeatures.contains("TutorDomain"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllTutorDomainDocuments")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    QLOG_DEBUG() << "Current open requests: " << replies.size();
-}
-
 void L2pItemModel::addFilesFromReply(QNetworkReply *reply, Structureelement *course)
 {
     QLOG_DEBUG() << tr("Dateiinformationen empfangen: ") << reply->url().toString();
@@ -578,11 +470,6 @@ void L2pItemModel::serverDataRecievedSlot(QNetworkReply *reply)
     case moodleCourses:
     {
         addMoodleCoursesFromReply(reply);
-        break;
-    }
-    case features:
-    {
-        addFeatureFromReply(reply, replyInfo.item);
         break;
     }
     case files:
