@@ -599,9 +599,10 @@ void Browser::on_openDownloadfolderPushButton_clicked()
 }
 
 /// Dateien bei einem Doppelklick öffnen
+/// Funktion ist broken beyond repair seit Abschaltung von L2P, rewrite für aktuelle MOPED API
 void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
 {
-    Structureelement *item =
+/*     Structureelement *item =
         (Structureelement *) l2pItemModel->getData()->
         itemFromIndex(proxy->mapToSource(index));
 
@@ -635,13 +636,13 @@ void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
         messages.updateMessage(item->data(bodyRole).toString().toUtf8());
         messages.updateAuthor(item->data(authorRole).toString());
         messages.updateDate(item->data(dateRole).toDateTime().toString("ddd dd.MM.yyyy hh:mm"));
-        messages.exec();
+        messages.exec(); */
     }
 }
-
+/// Funktion ist broken beyond repair seit Abschaltung von L2P, rewrite für aktuelle MOPED API
 void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
 {
-    // Bestimmung des Elements, auf das geklickt wurde
+/*     // Bestimmung des Elements, auf das geklickt wurde
     Structureelement *RightClickedItem =
         (Structureelement *) l2pItemModel->getData()->
         itemFromIndex(proxy->mapToSource(ui->dataTreeView->indexAt(pos)));
@@ -690,7 +691,7 @@ void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
     }
 
     // Anzeigen des Menus an der Mausposition
-    newCustomContextMenu.exec(ui->dataTreeView->mapToGlobal(pos));
+    newCustomContextMenu.exec(ui->dataTreeView->mapToGlobal(pos)); */
 
 }
 
