@@ -253,19 +253,7 @@ void Browser::on_syncPushButton_clicked()
             QString token = options->getAccessToken();
 
             QString url;
-            if (role == moodle){
-                url = moodleDownloadFileUrl % "/" % filename % "?downloadurl=" % downloadurl % "&token=" % token;
-            } else { /// deprecated
-                url = l2pDownloadFileUrl %
-                    currentElement->text() %
-                    QString("?accessToken=") %
-                    options->getAccessToken() %
-                    QString("&cid=") %
-                    currentElement->data(cidRole).toString() %
-                    QString("&downloadUrl=") %
-                    currentElement->data(urlRole).toUrl().toDisplayString(QUrl::FullyDecoded);
-
-            }
+            url = moodleDownloadFileUrl % "/" % filename % "?downloadurl=" % downloadurl % "&token=" % token;
 
 
             if (!loader->startNextDownload(filename,

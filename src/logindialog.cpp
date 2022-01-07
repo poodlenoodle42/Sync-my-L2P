@@ -26,19 +26,6 @@ LoginDialog::~LoginDialog()
     delete ui;
 }
 
-void LoginDialog::checkL2PAvailability() /// deprecated
-{
-    QUrl url(l2pApiDocs);
-    QNetworkRequest request;
-    request.setUrl(url);
-
-    QObject::connect(&manager, SIGNAL(finished(QNetworkReply*)),
-                     this, SLOT(availabilityL2PSlot(QNetworkReply*)));
-
-    QLOG_INFO() << tr("L2P Erreichbarkeitsrequest");
-    manager.get(request);
-}
-
 void LoginDialog::checkMoodleAvailability()
 {
     QUrl url(moodleApiDocs);
@@ -59,33 +46,10 @@ void LoginDialog::run(Login *login)
     QObject::connect(this, SIGNAL(rejected()), this->login, SLOT(stopLoginSlot()));
 
     // Überprüfe Erreichbarkeit des L2P
-    this->checkL2PAvailability();
+    //this->checkL2PAvailability(); ! L2P is deprecated by now !
     // TODO: check if this method and its slots are right. Keep in mind, that both
     // (availabilityL2PSlot, availabilityMoodleSlot) execute checkForAuthentification
     this->checkMoodleAvailability();
-}
-
-void LoginDialog::availabilityL2PSlot(QNetworkReply * reply)
-{
-    QObject::disconnect(&manager, SIGNAL(finished(QNetworkReply*)),
-                        this, SLOT(availabilityL2PSlot(QNetworkReply*)));
-
-    QString response = reply->readAll();
-
-    if( reply->error() )
-    {
-        response.truncate( 1000 );
-        QLOG_ERROR() << tr("L2P nicht erreichbar. Genauer Fehler: ") << reply->errorString();
-        QLOG_ERROR() << tr("Inhalt der Antwort: ") << response;
-        ui->statusLabel->setText(tr("Fehler: L2P nicht erreichbar."));
-        this->l2pAvailable = NOTAVAILABLE;
-    }
-    else
-    {
-        QLOG_INFO() << tr("L2P erreichbar");
-        this->l2pAvailable = AVAILABLE;
-        checkForAuthentification();
-    }
 }
 
 void LoginDialog::availabilityMoodleSlot(QNetworkReply * reply)

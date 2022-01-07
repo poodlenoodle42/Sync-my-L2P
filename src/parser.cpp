@@ -7,39 +7,6 @@
 #include "utils.h"
 #include "qslog/QsLog.h"
 
-QList<QString> Parser::parseFeatures(QNetworkReply *reply) /// deprecated
-{
-    // Empfangene Nachricht auslesen und als JSON interpretieren
-    QByteArray response(reply->readAll());
-    QJsonDocument document = QJsonDocument::fromJson(response);
-    QJsonObject object = document.object();
-
-    QList<QString> activeFeatures;
-
-    if(object.isEmpty())
-    {
-        QLOG_INFO() << tr("Featureinformationen leer bzw. nicht lesbar.") <<":"<<reply->url();
-        return activeFeatures;
-    }
-
-    if(!object["Status"].toBool())
-    {
-        QLOG_ERROR() << tr("Status der Featureinformationen nicht ok: ") <<
-                        QString(document.toJson());
-        return activeFeatures;
-    }
-
-    // Array mit allen einzelnen Vorlesungen/Veranstaltungen
-    QJsonArray courses = object["active"].toArray();
-
-    // Für jede Veranstaltung ein neues Strukturelement anlegen
-    foreach(QJsonValue element, courses)
-    {
-        activeFeatures << element.toString();
-    }
-
-    return activeFeatures;
-}
 
 QString Parser::escapeString(QString untrimmedStr)
 {

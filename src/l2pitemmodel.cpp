@@ -46,32 +46,7 @@ void L2pItemModel::loadDataFromServer()
     numRequests = 0;
 
     // Request für Kurse starten
-    requestCourses(); /// deprecated
     requestMoodleCourses();
-}
-
-/**
- * @brief Senden eines Requests zum Erhalt aller ausgewählten Veranstaltungen
- */
-void L2pItemModel::requestCourses() /// deprecated
-{
-    QLOG_DEBUG() << tr("Sende Request für Veranstaltungen");
-
-    QString url = options->isCurrentSemesterCheckBoxChecked() ?
-                  viewAllCourseInfoByCurrentSemesterUrl :
-                  viewAllCourseInfoUrl;
-
-    QUrl request_url(url % "?accessToken=" % options->getAccessToken());
-    QNetworkRequest request(request_url);
-
-    OpenRequest openRequest = {nullptr,
-                               courses,
-                               QTime::currentTime(),
-                               request};
-    requestQueue.append(openRequest);
-    numRequests++;
-
-    startNextRequests();
 }
 
 /**
@@ -102,33 +77,6 @@ void L2pItemModel::requestMoodleCourses()
     numRequests++;
 
     startNextRequests();
-}
-
-/**
- * @brief Request für die aktiven Module aller Kurse
- */
-void L2pItemModel::requestFeatures() /// deprecated
-{
-    QLOG_DEBUG() << tr("Sende Request für aktive Features");
-
-    for(auto *course : Utils::getAllCourseItems(data))
-    {
-        auto system = course->data(systemEXRole);
-        if (system == moodle) continue;
-
-        QString request_url = viewActiveFeaturesUrl %
-                                     "?accessToken=" % options->getAccessToken() %
-                                     "&cid=" % course->data(cidRole).toString();
-        QUrl url = request_url;
-        QNetworkRequest request(url);
-
-        OpenRequest openRequest = {course,
-                                   features,
-                                   QTime::currentTime(),
-                                   request};
-        requestQueue.append(openRequest);
-        numRequests++;
-    }
 }
 
 /**
@@ -321,32 +269,6 @@ void L2pItemModel::parseDataToXml(QDomDocument &output, QStandardItem *item,
 }
 
 /**
- * @brief Hinzufügen aller Kurse aus der Antwort des Servers
- * @param reply Netzwerkantwort mit Kursen
- */
-void L2pItemModel::addCoursesFromReply(QNetworkReply *reply) /// deprecated
-{
-    if(reply->error())
-    {
-        QLOG_ERROR() << tr("Beim Abruf der Veranstaltungen ist ein Fehler aufgetreten") % reply->errorString() % ";\n " % reply->url().toString();
-    }
-    else
-    {
-        QLOG_INFO() << tr("Veranstaltungen empfangen");
-        Parser::parseCourses(reply, data);
-    }
-
-    if(data->rowCount() != 0)
-    {
-        // Veranstaltungen alphabetisch sortieren
-        data->sort(0);
-
-        // Aktive Features abrufen
-        requestFeatures();
-    }
-}
-
-/**
  * @brief Hinzufügen aller Moodle-Kurse aus der Antwort des Servers
  * @param reply Netzwerkantwort mit Moodle-Kursen
  */
@@ -374,160 +296,6 @@ void L2pItemModel::addMoodleCoursesFromReply(QNetworkReply *reply)
 
         // Moodle Files abrufen
         requestMoodleFiles();
-    }
-}
-
-void L2pItemModel::addFeatureFromReply(QNetworkReply *reply, Structureelement *course) /// deprecated
-{
-    const auto activeFeatures = Parser::parseFeatures(reply);
-
-    QNetworkAccessManager &manager = *(new QNetworkAccessManager());
-    QObject::connect(&manager, SIGNAL(finished(QNetworkReply*)),
-                     this, SLOT(serverDataRecievedSlot(QNetworkReply*)));
-
-    if(options->isLearningMaterialsCheckBoxChecked() && activeFeatures.contains("Learning Materials"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllLearningMaterials")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isSharedLearningmaterialsCheckBoxChecked() && activeFeatures.contains("Shared Documents"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllSharedDocuments")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isAssignmentsCheckBoxChecked() && activeFeatures.contains("Assignments"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllAssignments")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isMediaLibrarysCheckBoxChecked() && activeFeatures.contains("Media Library"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllMediaLibraries")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isAnnouncementAttachmentsCheckBoxChecked() && activeFeatures.contains("Announcements"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllAnnouncements")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isEmailAttachmentsCheckBoxChecked() && activeFeatures.contains("Emails"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllEmails")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    if(options->isTutorDomainCheckBoxChecked() && activeFeatures.contains("TutorDomain"))
-    {
-        OpenRequest request = {course,
-                               files,
-                               QTime::currentTime(),
-                               createApiRequest(course, "viewAllTutorDomainDocuments")};
-        requestQueue.append(request);
-        numRequests++;
-    }
-
-    QLOG_DEBUG() << "Current open requests: " << replies.size();
-}
-
-void L2pItemModel::addFilesFromReply(QNetworkReply *reply, Structureelement *course) /// deprecated
-{
-    QLOG_DEBUG() << tr("Dateiinformationen empfangen: ") << reply->url().toString();
-
-    // Prüfen auf Fehler
-    if (!reply->error())
-    {
-        Parser::parseFiles(reply, course);
-
-        QLOG_DEBUG() << tr("Dateiinformationen geparst: ") << reply->url().toString();
-    }
-    else
-    {
-        QString replyMessage(reply->readAll());
-
-        if(replyMessage.contains("secure channel"))
-        {
-            QLOG_DEBUG() << tr("SSL Fehler für: ") << reply->url().toString();
-        }
-        else
-        {
-            auto errorMessage = reply->errorString();
-            QLOG_ERROR() << tr("Beim Abruf der Veranstaltungen ist ein Fehler aufgetreten") % reply->errorString() % ";\n " % reply->url().toString() % replyMessage;
-        }
-    }
-
-    // Prüfen, ob alle Antworten bearbeitet wurden
-    if (replies.empty())
-    {
-
-        QList<Structureelement*> items;
-
-        QStandardItem* root = data->invisibleRootItem();
-        for( int i=0; i < root->rowCount(); i++)
-        {
-            getItemList(static_cast<Structureelement*>(root->child(i)), items);
-        }
-
-        if(oldData)
-        {
-            QList<Structureelement*> oldItems;
-
-            // Get old data
-            root = oldData->invisibleRootItem();
-            getItemList(root, oldItems);
-
-            foreach(Structureelement *item, items)
-            {
-                // Find an old item which fits to a new one and copy properties
-                for(auto it = oldItems.begin(); it != oldItems.end(); it++)
-                {
-                    auto *oldItem = *it;
-                    if(item->data(urlRole) == oldItem->data(urlRole) && item->text() == oldItem->text())
-                    {
-                        item->setData(oldItem->data(includeRole), includeRole);
-                        oldItems.erase(it);
-                        break;
-                    }
-                }
-
-                // Don't include item if parent is not included
-                auto* parentItem = dynamic_cast<Structureelement*>(item->parent());
-                if(parentItem && !parentItem->data(includeRole).toBool() && item->data(includeRole).toBool())
-                {
-                    item->setData(false, includeRole);
-                }
-            }
-        }
-
-        Utils::checkAllFilesIfSynchronised(items, options->downloadFolderLineEditText());
     }
 }
 
@@ -605,26 +373,6 @@ void L2pItemModel::addMoodleFilesFromReply(QNetworkReply *reply, Structureelemen
 }
 
 /**
- * @brief Erstellung eines Lernraumspezifischen Requests
- * @param course Strukturelement des Kurses
- * @param apiCommand auszuführender Befehl
- * @return
- */
-QNetworkRequest L2pItemModel::createApiRequest(Structureelement *course,
-                                               QString apiCommand) /// deprecated
-{
-    QString access = "?accessToken=" % options->getAccessToken();
-    QString cid = "&cid=" % course->data(cidRole).toString();
-
-    QString url = l2pApiUrl % apiCommand % access % cid;
-    QNetworkRequest request(QUrl(QUrl::toPercentEncoding(url, ":/?=&")));
-
-    QLOG_DEBUG() << tr("Erstellter Request:") << url;
-
-    return request;
-}
-
-/**
  * @brief Verarbeitung empfangener Nachrichten vom L2P Server
  * @param reply empfangene Nachricht
  */
@@ -646,24 +394,9 @@ void L2pItemModel::serverDataRecievedSlot(QNetworkReply *reply)
 
     switch (replyInfo.type)
     {
-    case courses: /// deprecated
-    {
-        addCoursesFromReply(reply);
-        break;
-    }
     case moodleCourses:
     {
         addMoodleCoursesFromReply(reply);
-        break;
-    }
-    case features: /// deprecated
-    {
-        addFeatureFromReply(reply, replyInfo.item);
-        break;
-    }
-    case files: /// deprecated
-    {
-        addFilesFromReply(reply, replyInfo.item);
         break;
     }
     case moodleFiles:
