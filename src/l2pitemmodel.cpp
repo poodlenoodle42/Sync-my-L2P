@@ -46,32 +46,7 @@ void L2pItemModel::loadDataFromServer()
     numRequests = 0;
 
     // Request für Kurse starten
-    requestCourses();
     requestMoodleCourses();
-}
-
-/**
- * @brief Senden eines Requests zum Erhalt aller ausgewählten Veranstaltungen
- */
-void L2pItemModel::requestCourses()
-{
-    QLOG_DEBUG() << tr("Sende Request für Veranstaltungen");
-
-    QString url = options->isCurrentSemesterCheckBoxChecked() ?
-                  viewAllCourseInfoByCurrentSemesterUrl :
-                  viewAllCourseInfoUrl;
-
-    QUrl request_url(url % "?accessToken=" % options->getAccessToken());
-    QNetworkRequest request(request_url);
-
-    OpenRequest openRequest = {nullptr,
-                               courses,
-                               QTime::currentTime(),
-                               request};
-    requestQueue.append(openRequest);
-    numRequests++;
-
-    startNextRequests();
 }
 
 /**
@@ -317,32 +292,6 @@ void L2pItemModel::parseDataToXml(QDomDocument &output, QStandardItem *item,
     for(int i=0; i < item->rowCount(); i++)
     {
         parseDataToXml(output, item->child(i), &xmlItem);
-    }
-}
-
-/**
- * @brief Hinzufügen aller Kurse aus der Antwort des Servers
- * @param reply Netzwerkantwort mit Kursen
- */
-void L2pItemModel::addCoursesFromReply(QNetworkReply *reply)
-{
-    if(reply->error())
-    {
-        QLOG_ERROR() << tr("Beim Abruf der Veranstaltungen ist ein Fehler aufgetreten") % reply->errorString() % ";\n " % reply->url().toString();
-    }
-    else
-    {
-        QLOG_INFO() << tr("Veranstaltungen empfangen");
-        Parser::parseCourses(reply, data);
-    }
-
-    if(data->rowCount() != 0)
-    {
-        // Veranstaltungen alphabetisch sortieren
-        data->sort(0);
-
-        // Aktive Features abrufen
-        requestFeatures();
     }
 }
 
@@ -626,11 +575,6 @@ void L2pItemModel::serverDataRecievedSlot(QNetworkReply *reply)
 
     switch (replyInfo.type)
     {
-    case courses:
-    {
-        addCoursesFromReply(reply);
-        break;
-    }
     case moodleCourses:
     {
         addMoodleCoursesFromReply(reply);
