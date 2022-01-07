@@ -14,7 +14,6 @@ LoginDialog::LoginDialog(QWidget *parent) :
     ui->retranslateUi(this);
 
     setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::CustomizeWindowHint);
-    this->l2pAvailable = NOTTESTED;
     this->moodleAvailable = NOTTESTED;
 }
 
@@ -44,11 +43,6 @@ void LoginDialog::run(Login *login)
     this->login = login;
 
     QObject::connect(this, SIGNAL(rejected()), this->login, SLOT(stopLoginSlot()));
-
-    // Überprüfe Erreichbarkeit des L2P
-    //this->checkL2PAvailability(); ! L2P is deprecated by now !
-    // TODO: check if this method and its slots are right. Keep in mind, that both
-    // (availabilityL2PSlot, availabilityMoodleSlot) execute checkForAuthentification
     this->checkMoodleAvailability();
 }
 
@@ -90,7 +84,7 @@ void LoginDialog::succededSlot()
 
 void LoginDialog::checkForAuthentification()
 {
-    if (this->l2pAvailable == NOTTESTED || this->moodleAvailable == NOTTESTED)
+    if (this->moodleAvailable == NOTTESTED)
     {
         return;
     }
