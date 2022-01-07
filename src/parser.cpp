@@ -19,49 +19,6 @@ QString Parser::escapeString(QString untrimmedStr)
     return trimmedStr;
 }
 
-void Parser::parseCourses(QNetworkReply *reply, QStandardItemModel *itemModel)
-{
-    // Empfangene Nachricht auslesen und als JSON interpretieren
-    QByteArray response(reply->readAll());
-    QJsonDocument document = QJsonDocument::fromJson(response);
-    QJsonObject object = document.object();
-
-    if(object.isEmpty())
-    {
-        QLOG_WARN() << tr("Kursinformationen leer bzw. nicht lesbar.");
-        return;
-    }
-
-    if(!object["Status"].toBool())
-    {
-        QLOG_ERROR() << tr("Status der Kursinformationen nicht ok: ") <<
-                        QString(document.toJson());
-        return;
-    }
-
-    // Array mit allen einzelnen Vorlesungen/Veranstaltungen
-    QJsonArray courses = object["dataSet"].toArray();
-
-    // Für jede Veranstaltung ein neues Strukturelement anlegen
-    foreach(QJsonValue element, courses)
-    {
-        QJsonObject course = element.toObject();
-
-        QString title = course["courseTitle"].toString();
-        QString cid = course["uniqueid"].toString();
-        QString semester = course["semester"].toString();
-        QString url = course["url"].toString();
-
-        title = escapeString(title);
-
-        Structureelement *newCourse = new Structureelement(title, QUrl(url), 0, 0, cid, courseItem);
-
-        Utils::getSemesterItem(itemModel, semester)->appendRow(newCourse);
-
-        QLOG_DEBUG() << tr("Veranstaltung") << title << "(" << cid << tr(") hinzugefügt.");
-    }
-}
-
 void Parser::parseMoodleCourses(QNetworkReply *reply, QStandardItemModel *itemModel)
 {
     // Empfangene Nachricht auslesen und als JSON interpretieren
