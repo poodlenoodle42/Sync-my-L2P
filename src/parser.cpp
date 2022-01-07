@@ -7,7 +7,7 @@
 #include "utils.h"
 #include "qslog/QsLog.h"
 
-QList<QString> Parser::parseFeatures(QNetworkReply *reply)
+QList<QString> Parser::parseFeatures(QNetworkReply *reply) /// deprecated
 {
     // Empfangene Nachricht auslesen und als JSON interpretieren
     QByteArray response(reply->readAll());
@@ -140,7 +140,7 @@ void Parser::parseMoodleCourses(QNetworkReply *reply, QStandardItemModel *itemMo
     }
 }
 
-void Parser::parseFiles(QNetworkReply *reply, Structureelement* course)
+void Parser::parseFiles(QNetworkReply *reply, Structureelement* course) /// deprecated
 {
     QString url = reply->url().toString();
 

@@ -46,14 +46,14 @@ void L2pItemModel::loadDataFromServer()
     numRequests = 0;
 
     // Request für Kurse starten
-    requestCourses();
+    requestCourses(); /// deprecated
     requestMoodleCourses();
 }
 
 /**
  * @brief Senden eines Requests zum Erhalt aller ausgewählten Veranstaltungen
  */
-void L2pItemModel::requestCourses()
+void L2pItemModel::requestCourses() /// deprecated
 {
     QLOG_DEBUG() << tr("Sende Request für Veranstaltungen");
 
@@ -107,7 +107,7 @@ void L2pItemModel::requestMoodleCourses()
 /**
  * @brief Request für die aktiven Module aller Kurse
  */
-void L2pItemModel::requestFeatures()
+void L2pItemModel::requestFeatures() /// deprecated
 {
     QLOG_DEBUG() << tr("Sende Request für aktive Features");
 
@@ -324,7 +324,7 @@ void L2pItemModel::parseDataToXml(QDomDocument &output, QStandardItem *item,
  * @brief Hinzufügen aller Kurse aus der Antwort des Servers
  * @param reply Netzwerkantwort mit Kursen
  */
-void L2pItemModel::addCoursesFromReply(QNetworkReply *reply)
+void L2pItemModel::addCoursesFromReply(QNetworkReply *reply) /// deprecated
 {
     if(reply->error())
     {
@@ -377,7 +377,7 @@ void L2pItemModel::addMoodleCoursesFromReply(QNetworkReply *reply)
     }
 }
 
-void L2pItemModel::addFeatureFromReply(QNetworkReply *reply, Structureelement *course)
+void L2pItemModel::addFeatureFromReply(QNetworkReply *reply, Structureelement *course) /// deprecated
 {
     const auto activeFeatures = Parser::parseFeatures(reply);
 
@@ -458,7 +458,7 @@ void L2pItemModel::addFeatureFromReply(QNetworkReply *reply, Structureelement *c
     QLOG_DEBUG() << "Current open requests: " << replies.size();
 }
 
-void L2pItemModel::addFilesFromReply(QNetworkReply *reply, Structureelement *course)
+void L2pItemModel::addFilesFromReply(QNetworkReply *reply, Structureelement *course) /// deprecated
 {
     QLOG_DEBUG() << tr("Dateiinformationen empfangen: ") << reply->url().toString();
 
@@ -646,7 +646,7 @@ void L2pItemModel::serverDataRecievedSlot(QNetworkReply *reply)
 
     switch (replyInfo.type)
     {
-    case courses:
+    case courses: /// deprecated
     {
         addCoursesFromReply(reply);
         break;
@@ -656,12 +656,12 @@ void L2pItemModel::serverDataRecievedSlot(QNetworkReply *reply)
         addMoodleCoursesFromReply(reply);
         break;
     }
-    case features:
+    case features: /// deprecated
     {
         addFeatureFromReply(reply, replyInfo.item);
         break;
     }
-    case files:
+    case files: /// deprecated
     {
         addFilesFromReply(reply, replyInfo.item);
         break;
