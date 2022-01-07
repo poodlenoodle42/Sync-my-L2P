@@ -18,11 +18,7 @@ gui/info.ui
 include/version.h
 windows/SyncMyL2P.xml
 
-// Client ID
-include/clientId.h
-
 // Automated builds
 qt5
 qtcreator
 installbuilder
-include/clientId.h
