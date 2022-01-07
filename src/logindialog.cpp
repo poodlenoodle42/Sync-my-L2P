@@ -26,7 +26,7 @@ LoginDialog::~LoginDialog()
     delete ui;
 }
 
-void LoginDialog::checkL2PAvailability()
+void LoginDialog::checkL2PAvailability() /// deprecated
 {
     QUrl url(l2pApiDocs);
     QNetworkRequest request;

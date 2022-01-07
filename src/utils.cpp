@@ -85,14 +85,14 @@ QString Utils::getElementRemotePath(Structureelement *item)
     {
         return "";
     }
-    else if (systemEX == l2p)
+    else if (systemEX == l2p) /// deprecated
     {
         remoteUrl = item->data(urlRole).toString();
         // Ersten drei Zeichen entfernen, da der URL ein "|" vorangestellt ist + ein Zeichen /
         remoteUrl.remove(0,4);
         remoteUrl.prepend(l2pApiUrl);
     }
-    else
+    else /// deprecated (old www1 moodle)
     {
         // shows the file over the api.
         QString downloadurl = item->data(urlRole).toUrl().toDisplayString(QUrl::FullyDecoded);

@@ -611,7 +611,7 @@ void L2pItemModel::addMoodleFilesFromReply(QNetworkReply *reply, Structureelemen
  * @return
  */
 QNetworkRequest L2pItemModel::createApiRequest(Structureelement *course,
-                                               QString apiCommand)
+                                               QString apiCommand) /// deprecated
 {
     QString access = "?accessToken=" % options->getAccessToken();
     QString cid = "&cid=" % course->data(cidRole).toString();

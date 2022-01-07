@@ -255,7 +255,7 @@ void Browser::on_syncPushButton_clicked()
             QString url;
             if (role == moodle){
                 url = moodleDownloadFileUrl % "/" % filename % "?downloadurl=" % downloadurl % "&token=" % token;
-            } else {
+            } else { /// deprecated
                 url = l2pDownloadFileUrl %
                     currentElement->text() %
                     QString("?accessToken=") %
@@ -636,8 +636,8 @@ void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
         messages.updateMessage(item->data(bodyRole).toString().toUtf8());
         messages.updateAuthor(item->data(authorRole).toString());
         messages.updateDate(item->data(dateRole).toDateTime().toString("ddd dd.MM.yyyy hh:mm"));
-        messages.exec(); */
-    }
+        messages.exec();
+    }*/
 }
 /// Funktion ist broken beyond repair seit Abschaltung von L2P, rewrite für aktuelle MOPED API
 void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
