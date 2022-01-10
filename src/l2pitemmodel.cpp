@@ -27,7 +27,7 @@ L2pItemModel::~L2pItemModel()
 }
 
 /**
- * @brief Laden der Daten vom L2P Server
+ * @brief Laden der Daten vom Moodle Proxy
  */
 void L2pItemModel::loadDataFromServer()
 {
@@ -88,7 +88,7 @@ void L2pItemModel::requestMoodleFiles()
     for(auto *course : Utils::getAllCourseItems(data))
     {
         auto system = course->data(systemEXRole);
-        if (system == l2p) continue;
+        if (system != moodle) continue;
         QString request_url = moodleGetFilesUrl %
                 "?token=" % options->getAccessToken() %
                 "&courseid=" % course->data(cidRole).toString();
