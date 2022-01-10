@@ -11,6 +11,7 @@
 #include "utils.h"
 #include "urls.h"
 
+
 #include "qslog/QsLog.h"
 
 Utils::Utils(QObject *parent) :
@@ -75,8 +76,6 @@ QString Utils::getElementRemotePath(Structureelement *item)
 
     QString remoteUrl;
     auto typeEX = item->data(typeEXRole);
-    auto systemEX = item->data(systemEXRole);
-
     if(typeEX == courseItem)
     {
         remoteUrl = item->data(urlRole).toString();
@@ -84,6 +83,13 @@ QString Utils::getElementRemotePath(Structureelement *item)
     else if (typeEX == directoryItem)
     {
         return "";
+    }
+    else if (typeEX == fileItem)
+    {
+        QString filename = item->text();
+        QString downloadurl = item->data(urlRole).toUrl().toDisplayString(QUrl::FullyDecoded);
+        remoteUrl = moodleDownloadFileUrl % "/" % filename % "?downloadurl=" % downloadurl;
+
     }
     return remoteUrl;
 }
