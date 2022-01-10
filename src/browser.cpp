@@ -589,30 +589,14 @@ void Browser::on_openDownloadfolderPushButton_clicked()
 /// Funktion ist broken beyond repair seit Abschaltung von L2P, rewrite für aktuelle MOPED API
 void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
 {
-/*     Structureelement *item =
+    Structureelement *item =
         (Structureelement *) l2pItemModel->getData()->
         itemFromIndex(proxy->mapToSource(index));
 
     if (item->type() == fileItem)
     {
-        QFileInfo fileInfo(Utils::getElementLocalPath(item,
-                                                      options->downloadFolderLineEditText(),
-                                                      true,
-                                                      false));
-
-        QString fileUrl;
-
-        // Überprüfung, ob Datei lokal oder im L2P geöffnet werden soll
-        if(fileInfo.exists() && fileInfo.isFile())
-        {
-            fileUrl = Utils::getElementLocalPath(item, options->downloadFolderLineEditText());
-        }
-        else
-        {
-            fileUrl = Utils::getElementRemotePath(item);
-        }
-
-        QDesktopServices::openUrl(QUrl(fileUrl));
+        lastRightClickItem = item;
+        openFile();
     }
     else if (item->type() == messageItem)
     {
@@ -624,12 +608,12 @@ void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
         messages.updateAuthor(item->data(authorRole).toString());
         messages.updateDate(item->data(dateRole).toDateTime().toString("ddd dd.MM.yyyy hh:mm"));
         messages.exec();
-    }*/
+    }
 }
 /// Funktion ist broken beyond repair seit Abschaltung von L2P, rewrite für aktuelle MOPED API
 void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
 {
-/*     // Bestimmung des Elements, auf das geklickt wurde
+    // Bestimmung des Elements, auf das geklickt wurde
     Structureelement *RightClickedItem =
         (Structureelement *) l2pItemModel->getData()->
         itemFromIndex(proxy->mapToSource(ui->dataTreeView->indexAt(pos)));
@@ -678,7 +662,7 @@ void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
     }
 
     // Anzeigen des Menus an der Mausposition
-    newCustomContextMenu.exec(ui->dataTreeView->mapToGlobal(pos)); */
+    newCustomContextMenu.exec(ui->dataTreeView->mapToGlobal(pos));
 
 }
 
@@ -716,23 +700,23 @@ void Browser::openSourceMessage()
 
 void Browser::openFile()
 {
-    QFileInfo fileInfo(Utils::getElementLocalPath(lastRightClickItem,
+    Structureelement* item = lastRightClickItem;
+    QFileInfo fileInfo(Utils::getElementLocalPath(item,
                                                   options->downloadFolderLineEditText(),
                                                   true,
                                                   false));
-    auto typeEX = lastRightClickItem->data(typeEXRole);
-    auto systemEX = lastRightClickItem->data(systemEXRole);
 
     // Überprüfung, ob Datei lokal oder im L2P geöffnet werden soll
     QUrl url;
     if(fileInfo.exists())
     {
-        QString fileUrl = Utils::getElementLocalPath(lastRightClickItem, options->downloadFolderLineEditText());
+        QString fileUrl = Utils::getElementLocalPath(item, options->downloadFolderLineEditText());
         url = QUrl(fileUrl);
     }
     else
     {
-        QString fileUrl = Utils::getElementRemotePath(lastRightClickItem);
+        QString token = options->getAccessToken();
+        QString fileUrl = Utils::getElementRemotePath(item) % "&token=" % token;
         url = QUrl(fileUrl);
     }
 
@@ -770,7 +754,8 @@ void Browser::copyUrlToClipboardSlot()
     QString url;
     if(lastRightClickItem->type() == fileItem)
     {
-        url = Utils::getElementRemotePath(lastRightClickItem);
+        QString token = options->getAccessToken();
+        QString fileUrl = Utils::getElementRemotePath(lastRightClickItem) % "&token=" % token;
     }
     else if(lastRightClickItem->type() == courseItem)
     {
