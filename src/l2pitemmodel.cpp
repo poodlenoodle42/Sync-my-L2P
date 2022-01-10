@@ -320,7 +320,6 @@ void L2pItemModel::addMoodleFilesFromReply(QNetworkReply *reply, Structureelemen
         }
         else
         {
-            auto errorMessage = reply->errorString();
             QLOG_ERROR() << tr("Beim Abruf der Veranstaltungen ist ein Fehler aufgetreten") % reply->errorString() % ";\n " % reply->url().toString() % replyMessage;
         }
     }
