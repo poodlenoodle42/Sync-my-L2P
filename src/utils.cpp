@@ -59,7 +59,7 @@ QString Utils::getElementLocalPath(Structureelement *item, QString downloadDirec
         // Fileprefix hinzufügen
         if(includePrefix)
         {
-            path.push_front("file:///");
+            path = QUrl::fromLocalFile(path).toString();
         }
 
         // Dateiname
