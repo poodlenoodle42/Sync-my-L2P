@@ -35,12 +35,6 @@ public:
 
     // Getter
     bool isUserDataSaveCheckBoxChecked();
-    bool isLearningMaterialsCheckBoxChecked();
-    bool isSharedLearningmaterialsCheckBoxChecked();
-    bool isAssignmentsCheckBoxChecked();
-    bool isMediaLibrarysCheckBoxChecked();
-    bool isEmailAttachmentsCheckBoxChecked();
-    bool isAnnouncementAttachmentsCheckBoxChecked();
     bool isAutoLoginOnStartCheckBoxChecked();
     bool isAutoSyncOnStartCheckBoxChecked();
     bool isMinimizeInTrayCheckBoxChecked();
@@ -57,8 +51,6 @@ public:
     int getLoginCounter();
 
     QString downloadFolderLineEditText();
-    QString userNameLineEditText();
-    QString userPasswordLineEditText();
 
     void init(Browser *browser);
 
