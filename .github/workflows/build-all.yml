@@ -418,6 +418,7 @@ jobs:
           set(ENV{LD_LIBRARY_PATH} "${{ steps.qt_creator.outputs.qtc_directory }}/lib/qtcreator:$ENV{LD_LIBRARY_PATH}")
           set(ENV{LD_LIBRARY_PATH} "${{ steps.qt_creator.outputs.qtc_directory }}/lib/qtcreator/plugins:$ENV{LD_LIBRARY_PATH}")
           set(ENV{LD_LIBRARY_PATH} "$ENV{GITHUB_WORKSPACE}/linux/lib:$ENV{LD_LIBRARY_PATH}")
+          message(ENV{LD_LIBRARY_PATH})
 
           file(DOWNLOAD "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
             ./linux/linuxdeployqt-continuous-x86_64.AppImage SHOW_PROGRESS)
