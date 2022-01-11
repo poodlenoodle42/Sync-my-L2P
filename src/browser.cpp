@@ -755,7 +755,7 @@ void Browser::copyUrlToClipboardSlot()
     if(lastRightClickItem->type() == fileItem)
     {
         QString token = options->getAccessToken();
-        QString fileUrl = Utils::getElementRemotePath(lastRightClickItem) % "&token=" % token;
+        url = Utils::getElementRemotePath(lastRightClickItem) % "&token=" % token;
     }
     else if(lastRightClickItem->type() == courseItem)
     {
