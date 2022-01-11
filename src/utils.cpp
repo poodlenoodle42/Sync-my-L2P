@@ -87,7 +87,8 @@ QString Utils::getElementRemotePath(Structureelement *item)
     else if (typeEX == fileItem)
     {
         QString filename = item->text();
-        QString downloadurl = item->data(urlRole).toUrl().toDisplayString(QUrl::FullyDecoded);
+        QString downloadurl = item->data(urlRole).toString();
+        //QString downloadurl = item->data(urlRole).toUrl().toDisplayString(QUrl::FullyDecoded);
         remoteUrl = moodleDownloadFileUrl % "/" % filename % "?downloadurl=" % downloadurl;
 
     }
