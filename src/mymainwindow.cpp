@@ -179,7 +179,7 @@ void MyMainWindow::checkForUpdate()
                                             tr("Neue Version verfügbar!") + " (v" + replyMessage +")",
                                             tr("Auf der offiziellen Webseite ist eine neue Version verfügbar!\n"
                                                "Diese Nachricht kannst du in den Optionen deaktivieren.\n"
-                                               "Jetzt https://www.syncmyl2p.de/ aufrufen?"));
+                                               "Jetzt %1 aufrufen?").arg(releaseUrl));
         if (button == QMessageBox::Yes)
         {
             QDesktopServices::openUrl(QUrl("https://www.syncmyl2p.de/"));
