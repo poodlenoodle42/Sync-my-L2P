@@ -1,6 +1,5 @@
 #include "browser.h"
 #include "ui_browser.h"
-#include "message.h"
 #include "urls.h"
 
 #include "options.h"
@@ -722,6 +721,7 @@ void Browser::successfulLoginSlot()
 
 void Browser::itemModelReloadedSlot()
 {
+    QLOG_DEBUG() << tr("Finalized pulling data. Checking local state...");
     updateButtons();
 
     QList<Structureelement*> items;
