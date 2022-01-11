@@ -103,12 +103,6 @@ QVariant Structureelement::data(int role) const
                 statustip.append("nicht synchronisiert");
             }
         }
-        else if (typeEX == messageItem)
-        {
-            statustip.append(text() % " - ");
-            statustip.append(author);
-            statustip.append(" - " % time.toString("ddd dd.MM.yyyy hh:mm"));
-        }
         return statustip;
     }
     case Qt::ForegroundRole:
@@ -225,10 +219,6 @@ void Structureelement::chooseIcon()
     {
         setIcon(QIcon(":/icons/semester.png"));
     }
-    else if(typeEX == messageItem)
-    {
-        setIcon(QIcon(":/icons/mail.png"));
-    }
 }
 
 /// Vergleich zwischen zwei Items für Sortierung.
@@ -243,10 +233,6 @@ bool Structureelement::operator< (const QStandardItem& other) const
     else if ((typeEX == fileItem) && (other.type() != fileItem))
     {
         return false;
-    }
-    else if (typeEX == messageItem)
-    {
-        return (data(dateRole) < other.data(dateRole));
     }
     else
     {

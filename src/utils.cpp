@@ -175,53 +175,6 @@ Structureelement *Utils::getDirectoryItem(Structureelement *courseItem, QStringL
         // Remove unnessescary whit
         item = item.simplified();
 
-        // Bei Verwendung der deutschen Sprache die Ordner umbennen
-        if(QLocale::system().language() == QLocale::German)
-        {
-            if (item.contains("SharedDocuments")) {
-                item = "Gemeinsame-Dokumente";
-            }
-            else if (item.contains("StructuredMaterials")) {
-                item = "Lernmaterialien";
-            }
-            else if (item.contains("LA_AssignmentDocuments")) {
-                item = "Übungsdokumente";
-            }
-            else if (item.contains("LA_SolutionDocuments")) {
-                item = "Übungslösungen";
-            }
-            else if (item.contains("LA_CorrectionDocuments")) {
-                item = "Übungskorrektur";
-            }
-            else if (item.contains("LA_SampleSolutions")) {
-                item = "Übungsmusterlösung";
-            }
-            else if (item.contains("EmailAttachments")) {
-                item = "E-Mails";
-            }
-            else if (item.contains("MediaLibrary")) {
-                item = "Medienbibliothek";
-            }
-            else if (item.contains("AnnouncementDocuments")) {
-                item = "Ankündigungen";
-            }
-            else if (item.contains("Announcement"))
-            {
-                item = "Ankündigungen";
-            }
-        }
-
-        // Bei anderen Sprachen werden Anhänge zu den Nachrichten gepackt.
-        if(QLocale::system().language() != QLocale::German)
-        {
-            if (item.contains("AnnouncementDocuments")) {
-                item = "Announcement";
-            }
-            else if (item.contains("EmailAttachments")) {
-                item = "E-Mails";
-            }
-        }
-
         bool correctChildFound = false;
         for(int row=0; row < currentItem->rowCount(); ++row)
         {
@@ -276,6 +229,7 @@ void Utils::checkAllFilesIfSynchronised(QList<Structureelement*> items, QString 
             else
             {
                 item->setData(NOT_SYNCHRONISED, synchronisedRole);
+                QLOG_DEBUG();
             }
 
     }
