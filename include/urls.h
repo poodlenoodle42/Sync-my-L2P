@@ -3,6 +3,7 @@
 
 #include <QString>
 
+const QString appUpdateUrl = "https://app.rwth-aachen.de/syncmyl2p/version.txt";
 const QString moodleApiDomain = "https://moped.ecampus.rwth-aachen.de/";
 const QString moodleApiUrlBase = moodleApiDomain + "proxy/api/v2/";
 const QString moodleApiDocs = moodleApiUrlBase + "Documentation";

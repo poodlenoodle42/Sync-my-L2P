@@ -57,17 +57,6 @@ void Options::loadSettings()
 
     ui->downloadFolderlineEdit->setText(            settings.value("downloadFolder", "").toString());
 
-    settings.beginGroup("documentFilter");
-    ui->learningMaterialsCheckBox->setChecked(      settings.value("documents", true).toBool());
-    ui->sharedDocumentsCheckBox->setChecked(        settings.value("sharedMaterials", true).toBool());
-    ui->assignmentsCheckBox->setChecked(            settings.value("exercises", true).toBool());
-    ui->mediaLibrarysCheckBox->setChecked(          settings.value("literature", true).toBool());
-    ui->emailAttachmentsCheckBox->setChecked(       settings.value("email", true).toBool());
-    ui->announcementAttachmentsCheckBox->setChecked(settings.value("announcement", true).toBool());
-    ui->tutorDomainCheckBox->setChecked(            settings.value("tutorDomain", true).toBool());
-
-    settings.endGroup();
-
     settings.beginGroup("automation");
     ui->autoLoginOnStartCheckBox->setChecked(       settings.value("autoLoginOnStart", false).toBool());
     ui->autoSyncOnStartCheckBox->setChecked(        settings.value("autoSyncOnStart", false).toBool());
@@ -108,16 +97,6 @@ void Options::saveSettings()
         settings.remove("loginData");
 
     settings.setValue("downloadFolder",     ui->downloadFolderlineEdit->text());
-
-    settings.beginGroup("documentFilter");
-    settings.setValue("documents",          ui->learningMaterialsCheckBox->isChecked());
-    settings.setValue("sharedMaterials",    ui->sharedDocumentsCheckBox->isChecked());
-    settings.setValue("exercises",          ui->assignmentsCheckBox->isChecked());
-    settings.setValue("literature",         ui->mediaLibrarysCheckBox->isChecked());
-    settings.setValue("email",              ui->emailAttachmentsCheckBox->isChecked());
-    settings.setValue("announcement",       ui->announcementAttachmentsCheckBox->isChecked());
-    settings.setValue("tutorDomain",        ui->tutorDomainCheckBox->isChecked());
-    settings.endGroup();
 
     settings.beginGroup("automation");
     settings.setValue("autoLoginOnStart",   ui->autoLoginOnStartCheckBox->isChecked());
@@ -206,41 +185,6 @@ QString Options::downloadFolderLineEditText()
 void Options::init(Browser *browser)
 {
     this->browser = browser;
-}
-
-bool Options::isAssignmentsCheckBoxChecked()
-{
-    return ui->assignmentsCheckBox->isChecked();
-}
-
-bool Options::isMediaLibrarysCheckBoxChecked()
-{
-    return ui->mediaLibrarysCheckBox->isChecked();
-}
-
-bool Options::isEmailAttachmentsCheckBoxChecked()
-{
-    return ui->emailAttachmentsCheckBox->isChecked();
-}
-
-bool Options::isAnnouncementAttachmentsCheckBoxChecked()
-{
-    return ui->announcementAttachmentsCheckBox->isChecked();
-}
-
-bool Options::isSharedLearningmaterialsCheckBoxChecked()
-{
-    return ui->sharedDocumentsCheckBox->isChecked();
-}
-
-bool Options::isLearningMaterialsCheckBoxChecked()
-{
-    return ui->learningMaterialsCheckBox->isChecked();
-}
-
-bool Options::isTutorDomainCheckBoxChecked()
-{
-    return ui->tutorDomainCheckBox->isChecked();
 }
 
 bool Options::isAutoSyncOnStartCheckBoxChecked()

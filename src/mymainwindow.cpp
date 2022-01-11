@@ -24,6 +24,7 @@
 #include "qslog/QsLog.h"
 #include "utils.h"
 #include "version.h"
+#include "urls.h"
 
 
 MyMainWindow::MyMainWindow(QWidget *parent):
@@ -138,8 +139,9 @@ void MyMainWindow::checkForUpdate()
 {
     int currentVersion = PRODUCT_VERSION_CODE;
 
+    QUrl updateUrl = appUpdateUrl;
     QNetworkAccessManager manager;
-    QNetworkRequest request(QUrl("https://www.syncmyl2p.de/version.txt"));
+    QNetworkRequest request(updateUrl);
     request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     QEventLoop newLoop;
     QNetworkReply *reply = manager.get(request);
