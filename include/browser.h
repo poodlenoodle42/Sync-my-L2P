@@ -98,8 +98,6 @@ private:
 
 private slots:
     void openFile();
-    void openMessage();
-    void openSourceMessage();
     void openCourse();
     void on_searchPushButton_clicked();
     void on_removeSelectionPushButton_clicked();

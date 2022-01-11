@@ -248,7 +248,7 @@ void Browser::on_syncPushButton_clicked()
         {
 
 
-            QString downloadurl = currentElement->data(urlRole).toUrl().toDisplayString(QUrl::FullyDecoded);
+            QString downloadurl = currentElement->data(urlRole).toString();
             QString token = options->getAccessToken();
 
             QString url;
@@ -598,17 +598,6 @@ void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
         lastRightClickItem = item;
         openFile();
     }
-    else if (item->type() == messageItem)
-    {
-        // Erzeugt das Popup-Fester mit der anzuzeigenden Nachricht
-        message messages;
-
-        messages.updateSubject(item->data(topicRole).toString());
-        messages.updateMessage(item->data(bodyRole).toString().toUtf8());
-        messages.updateAuthor(item->data(authorRole).toString());
-        messages.updateDate(item->data(dateRole).toDateTime().toString("ddd dd.MM.yyyy hh:mm"));
-        messages.exec();
-    }
 }
 /// Funktion ist broken beyond repair seit Abschaltung von L2P, rewrite für aktuelle MOPED API
 void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
@@ -637,28 +626,14 @@ void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
     }
 
     // Öffnen des Elements lokal oder im L2P
-    if (RightClickedItem->type() != messageItem)
+    if (RightClickedItem->type() == fileItem)
     {
-    newCustomContextMenu.addAction(tr("Öffnen"), this, SLOT(openFile()));
+        newCustomContextMenu.addAction(tr("Öffnen"), this, SLOT(openFile()));
     }
     // Kopieren der URL
     if(RightClickedItem->type() == courseItem || RightClickedItem->type() == fileItem)
     {
         newCustomContextMenu.addAction(tr("Link kopieren"), this, SLOT(copyUrlToClipboardSlot()));
-    }
-
-    // Öffnen der Nachricht
-    if(RightClickedItem->type()== messageItem)
-    {
-        newCustomContextMenu.addAction(tr("Nachricht anzeigen"), this, SLOT(openMessage()));
-
-    }
-
-    // Öffnen der Nachricht im Quelltext
-    if(RightClickedItem->type()== messageItem)
-    {
-        newCustomContextMenu.addAction(tr("Nachricht im Quelltext anzeigen"), this, SLOT(openSourceMessage()));
-
     }
 
     // Anzeigen des Menus an der Mausposition
@@ -670,32 +645,6 @@ void Browser::openCourse()
 {
     // Öffnen der URL des mit der rechten Maustaste geklickten Items
     QDesktopServices::openUrl(lastRightClickItem->data(urlRole).toUrl());
-}
-
-void Browser::openMessage()
-{
-    // Erzeugt das Popup-Fester mit der anzuzeigenden Nachricht
-    message messages;
-
-    messages.updateSubject(lastRightClickItem->data(topicRole).toString());
-    messages.updateMessage(lastRightClickItem->data(bodyRole).toString().toUtf8());
-    messages.updateAuthor(lastRightClickItem->data(authorRole).toString());
-    messages.updateDate(lastRightClickItem->data(dateRole).toDateTime().toString("ddd dd.MM.yyyy hh:mm"));
-
-    messages.exec();
-}
-
-void Browser::openSourceMessage()
-{
-    // Erzeugt das Popup-Fester mit der anzuzeigenden Nachricht
-    message messages;
-
-    messages.updateSubject(lastRightClickItem->data(topicRole).toString());
-    messages.updateMessage(lastRightClickItem->data(bodyRole).toString().toHtmlEscaped());
-    messages.updateAuthor(lastRightClickItem->data(authorRole).toString());
-    messages.updateDate(lastRightClickItem->data(dateRole).toDateTime().toString("ddd dd.MM.yyyy hh:mm"));
-
-    messages.exec();
 }
 
 void Browser::openFile()
@@ -711,6 +660,7 @@ void Browser::openFile()
     if(fileInfo.exists())
     {
         QString fileUrl = Utils::getElementLocalPath(item, options->downloadFolderLineEditText());
+        QLOG_DEBUG() << tr("Opening local file: ") << fileUrl;
         url = QUrl(fileUrl);
     }
     else
@@ -774,7 +724,9 @@ void Browser::itemModelReloadedSlot()
 {
     updateButtons();
 
-    //Utils::checkAllFilesIfSynchronised(l2pItemModel->getData(), options->downloadFolderLineEditText());
+    QList<Structureelement*> items;
+    getStructureelementsList(l2pItemModel->getData()->invisibleRootItem(), items);
+    Utils::checkAllFilesIfSynchronised(items, options->downloadFolderLineEditText());
 
     // Anzeigen aller neuen, unsynchronisierten Dateien
     if (refreshCounter == 1)
