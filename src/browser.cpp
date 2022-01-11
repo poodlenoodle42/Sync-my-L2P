@@ -659,7 +659,7 @@ void Browser::openFile()
     QUrl url;
     if(fileInfo.exists())
     {
-        QString fileUrl = Utils::getElementLocalPath(item, options->downloadFolderLineEditText());
+        QString fileUrl = Utils::getElementLocalPath(item, options->downloadFolderLineEditText(), true, true);
         QLOG_DEBUG() << tr("Opening local file: ") << fileUrl;
         url = QUrl(fileUrl);
     }
