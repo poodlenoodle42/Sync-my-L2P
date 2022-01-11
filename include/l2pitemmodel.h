@@ -67,10 +67,7 @@ protected:
 
     enum Type
     {
-        courses,
         moodleCourses,
-        features,
-        files,
         moodleFiles
     };
 

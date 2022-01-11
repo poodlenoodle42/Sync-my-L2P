@@ -44,7 +44,6 @@ private:
 
     // Pointer to Class responsible for the login
     Login *login;
-    Availability l2pAvailable;
     Availability moodleAvailable;
 };
 
