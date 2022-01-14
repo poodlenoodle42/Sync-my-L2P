@@ -177,7 +177,7 @@
     </message>
     <message>
         <location filename="../src/browser.cpp" line="311"/>
-        <source>Synchronisation mit dem L2P der RWTH Aachen abgeschlossen.</source>
+        <source>Synchronisation mit RWTHmoodle abgeschlossen.</source>
         <translation></translation>
     </message>
     <message>

@@ -27,7 +27,7 @@
    <item>
     <widget class="QLabel" name="statusLabel">
      <property name="text">
-      <string>Überprüfe Erreichbarkeit des L2P...</string>
+      <string>Überprüfe Erreichbarkeit von RWTHmoodle...</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignHCenter|Qt::AlignTop</set>

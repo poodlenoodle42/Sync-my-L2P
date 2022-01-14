@@ -372,7 +372,7 @@ void L2pItemModel::addMoodleFilesFromReply(QNetworkReply *reply, Structureelemen
 }
 
 /**
- * @brief Verarbeitung empfangener Nachrichten vom L2P Server
+ * @brief Verarbeitung empfangener Nachrichten RWTH app proxy
  * @param reply empfangene Nachricht
  */
 void L2pItemModel::serverDataRecievedSlot(QNetworkReply *reply)

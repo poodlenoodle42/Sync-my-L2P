@@ -10,7 +10,7 @@
 
 QString Parser::escapeString(QString untrimmedStr)
 {
-    // Remove problematic characters for file systems that are allowed in the l2p
+    // Remove problematic characters for file systems that are allowed in RWTHmoodle
     QString escapePattern = "(:|<|>|/|\\\\|\\||\\*|\\^|\\?|\\\")";
     QRegExp escapeRegExp(escapePattern, Qt::CaseSensitive);
     QString trimmedStr = untrimmedStr.replace(escapeRegExp, "").trimmed();
