@@ -182,7 +182,7 @@ void MyMainWindow::checkForUpdate()
                                                "Jetzt %1 aufrufen?").arg(releaseUrl));
         if (button == QMessageBox::Yes)
         {
-            QDesktopServices::openUrl(QUrl("https://www.syncmyl2p.de/"));
+            QDesktopServices::openUrl(QUrl(releaseUrl));
         }
     }
     else
