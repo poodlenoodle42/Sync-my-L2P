@@ -229,7 +229,7 @@ void Utils::checkAllFilesIfSynchronised(QList<Structureelement*> items, QString 
             else
             {
                 item->setData(NOT_SYNCHRONISED, synchronisedRole);
-                QLOG_DEBUG();
+                QLOG_DEBUG() << tr("Not synchronised: ") << item->text();
             }
 
     }
