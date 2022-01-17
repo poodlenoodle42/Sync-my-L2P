@@ -87,6 +87,11 @@ void MyMainWindow::closeEvent(QCloseEvent * event)
     event->accept();
 }
 
+void MyMainWindow::closeTask()
+{
+    saveSettings();
+}
+
 /// Laden der gespeicherten Einstellungen aller Tabs
 void MyMainWindow::loadSettings()
 {
