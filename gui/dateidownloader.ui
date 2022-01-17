@@ -129,6 +129,7 @@
     <font>
      <pointsize>12</pointsize>
      <weight>75</weight>
+     <italic>false</italic>
      <bold>true</bold>
     </font>
    </property>
@@ -145,7 +146,7 @@
     <enum>QFrame::Plain</enum>
    </property>
    <property name="text">
-    <string>Download Datei 12/54</string>
+    <string>Warte auf Download</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -198,7 +199,7 @@
     <enum>QFrame::Plain</enum>
    </property>
    <property name="text">
-    <string>Grundgebiete der Grundgebiete</string>
+    <string>Warten ...</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
