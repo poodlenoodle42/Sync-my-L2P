@@ -78,6 +78,7 @@ private:
     void updateButtons();
     void setupSignalsSlots();
     int overrideFilesDialog(QString filename);
+    QUrl getFileURL(Structureelement* item);
 #ifdef _WIN32
     static int pathTooLongDialog(QString filename);
 #endif

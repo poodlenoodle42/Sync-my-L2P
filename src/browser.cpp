@@ -703,13 +703,20 @@ void Browser::openCourse()
 void Browser::openFile()
 {
     Structureelement* item = lastRightClickItem;
+
+    QUrl url = getFileURL(item);
+
+    QDesktopServices::openUrl(url);
+}
+
+QUrl Browser::getFileURL(Structureelement* item)
+{
+    QUrl url;
     QFileInfo fileInfo(Utils::getElementLocalPath(item,
                                                   options->downloadFolderLineEditText(),
                                                   true,
                                                   false));
-
     // Überprüfung, ob Datei lokal oder in RWTHmoodle geöffnet werden soll
-    QUrl url;
     if(fileInfo.exists())
     {
         QString fileUrl = Utils::getElementLocalPath(item, options->downloadFolderLineEditText(), true, true);
@@ -722,8 +729,7 @@ void Browser::openFile()
         QString fileUrl = Utils::getElementRemotePath(item) % "&token=" % token;
         url = QUrl(fileUrl);
     }
-
-    QDesktopServices::openUrl(url);
+    return url;
 }
 
 void Browser::on_showNewDataPushButton_clicked()
@@ -757,8 +763,7 @@ void Browser::copyUrlToClipboardSlot()
     QString url;
     if(lastRightClickItem->type() == fileItem)
     {
-        QString token = options->getAccessToken();
-        url = Utils::getElementRemotePath(lastRightClickItem) % "&token=" % token;
+        url = getFileURL(lastRightClickItem).toString();
     }
     else if(lastRightClickItem->type() == courseItem)
     {
