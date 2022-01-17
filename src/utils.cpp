@@ -221,15 +221,14 @@ void Utils::checkAllFilesIfSynchronised(QList<Structureelement*> items, QString 
         QFileInfo fileInfo(filePath);
 
         if(fileInfo.exists() && fileInfo.isFile() &&
-                fileInfo.size() == item->data(sizeRole).toInt()/* &&
-                fileInfo.lastModified() == item->data(dateRole).toDateTime()*/)
+                fileInfo.size() == item->data(sizeRole).toInt() &&
+                fileInfo.lastModified() >= item->data(dateRole).toDateTime())
             {
                 item->setData(SYNCHRONISED, synchronisedRole);
             }
             else
             {
                 item->setData(NOT_SYNCHRONISED, synchronisedRole);
-                QLOG_DEBUG() << tr("Not synchronised: ") << item->text();
             }
 
     }
