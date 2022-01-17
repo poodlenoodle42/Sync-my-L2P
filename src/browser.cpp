@@ -159,6 +159,10 @@ void Browser::on_syncPushButton_clicked()
     QItemSelection newSelection;
     ui->dataTreeView->collapseAll();
 
+    const auto overrideFilesSetting = this->options->getOverrideFilesSetting();
+    bool showOverrideFilesDialog = overrideFilesSetting == Options::overrideFiles::ask;
+    bool overrideFiles = overrideFilesSetting == Options::overrideFiles::download;
+
 #ifdef _WIN32
     const bool oldWindowsVersion = !Utils::longPathsSupported();
     const auto longPathsSetting = this->options->getLongPathsSetting();
@@ -238,10 +242,49 @@ void Browser::on_syncPushButton_clicked()
         if(filename.contains(".aspx"))
             continue;
 
-        bool downloadFile = options->isOverrideFilesCheckBoxChecked() &&
-                QFileInfo(directory, filename).lastModified().toMSecsSinceEpoch()/1000 < currentElement->data(dateRole).toDateTime().toMSecsSinceEpoch()/1000;
-        downloadFile = downloadFile || !directory.exists(filename);
+        bool fileExists = directory.exists(filename);
+        bool downloadFile = !fileExists;
 
+        if (fileExists && (currentElement->data(synchronisedRole) == NOT_SYNCHRONISED)) // File is out of sync but already exists: Implies either local changes, corrupt file or updated remote file
+        {
+            if(showOverrideFilesDialog)
+            {
+                // ask user if
+                const int res = Browser::overrideFilesDialog(currentElement->text());
+                bool cancel = false;
+                switch (res)
+                {
+                case QMessageBox::Yes:
+                default:
+                    overrideFiles = true;
+                    break;
+                case QMessageBox::YesToAll: // Apply on all and make standard
+                    overrideFiles = true;
+                    showOverrideFilesDialog = false;
+                    break;
+                case QMessageBox::No:
+                    overrideFiles = false;
+                    break;
+                case QMessageBox::NoToAll:
+                    overrideFiles = false;
+                    showOverrideFilesDialog = false;
+                    break;
+                case QMessageBox::Cancel:
+                    cancel = true;
+                    break;
+                }
+                if (cancel)
+                {
+                    break;
+                }
+
+            }
+            if (!overrideFiles)
+            {
+                continue;
+            }
+            downloadFile = overrideFiles;
+        }
         // Datei existiert noch nicht
         if(downloadFile)
         {
@@ -294,7 +337,7 @@ void Browser::on_syncPushButton_clicked()
     QMessageBox messageBox(this);
     QTimer::singleShot(10000, &messageBox, SLOT(accept()));
     messageBox.setText
-    (tr("Synchronisation mit dem L2P der RWTH Aachen abgeschlossen."));
+    (tr("Synchronisation mit RWTHmoodle abgeschlossen."));
     messageBox.setIcon(QMessageBox::NoIcon);
     messageBox.setInformativeText(QString
                                   (tr("Es wurden %1 von %2 eingebundenen Dateien synchronisiert.\n(Dieses Fenster schließt nach 10 Sek. automatisch.)")).arg
@@ -575,6 +618,19 @@ int Browser::pathTooLongDialog(QString filename)
 }
 #endif
 
+int Browser::overrideFilesDialog(QString filename)
+{
+    QMessageBox msgBox;
+    msgBox.setText(tr("Datei überschreiben?"));
+    msgBox.setInformativeText(QString(tr("Für die Datei \"%1\" liegt eine aktualisierte Version zum Download bereit. "
+                                 "Soll die lokale Datei überschrieben werden? "
+                                 "Hierbei gehen bisherige Änderungen verloren! (Du kannst in den Einstellungen das "
+                                 "Standardverhalten ändern.)")).arg(filename));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::No | QMessageBox::NoToAll | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Yes);
+    return msgBox.exec();
+}
+
 void Browser::on_openDownloadfolderPushButton_clicked()
 {
     // Betriebssystem soll mit dem Standardprogramm den Pfad öffnen
@@ -584,8 +640,6 @@ void Browser::on_openDownloadfolderPushButton_clicked()
                                QUrl::TolerantMode));
 }
 
-/// Dateien bei einem Doppelklick öffnen
-/// Funktion ist broken beyond repair seit Abschaltung von L2P, rewrite für aktuelle MOPED API
 void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
 {
     Structureelement *item =
@@ -598,7 +652,7 @@ void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
         openFile();
     }
 }
-/// Funktion ist broken beyond repair seit Abschaltung von L2P, rewrite für aktuelle MOPED API
+
 void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
 {
     // Bestimmung des Elements, auf das geklickt wurde
@@ -618,13 +672,13 @@ void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
     // Erstellen eines neuen Menus
     QMenu newCustomContextMenu(this);
 
-    // Öffnen der Veranstaltungsseite im L2P
+    // Öffnen der Veranstaltungsseite in RWTHmoodle
     if (RightClickedItem->type() == courseItem)
     {
         newCustomContextMenu.addAction(tr("Veranstaltungsseite öffnen"), this, SLOT(openCourse()));
     }
 
-    // Öffnen des Elements lokal oder im L2P
+    // Öffnen des Elements lokal oder in RWTHmoodle
     if (RightClickedItem->type() == fileItem)
     {
         newCustomContextMenu.addAction(tr("Öffnen"), this, SLOT(openFile()));
@@ -654,7 +708,7 @@ void Browser::openFile()
                                                   true,
                                                   false));
 
-    // Überprüfung, ob Datei lokal oder im L2P geöffnet werden soll
+    // Überprüfung, ob Datei lokal oder in RWTHmoodle geöffnet werden soll
     QUrl url;
     if(fileInfo.exists())
     {

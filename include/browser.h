@@ -77,7 +77,7 @@ private:
 
     void updateButtons();
     void setupSignalsSlots();
-
+    int overrideFilesDialog(QString filename);
 #ifdef _WIN32
     static int pathTooLongDialog(QString filename);
 #endif
@@ -89,6 +89,8 @@ private:
     QFile                   output;
 
     Structureelement* lastRightClickItem;
+
+
 
     Options *options;
 
