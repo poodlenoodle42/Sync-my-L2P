@@ -31,6 +31,10 @@ Options::Options(QWidget *parent) :
     ui->longPathsCB->insertItem(ETOI(longPaths::ask), tr("Nachfragen"));
     ui->longPathsCB->insertItem(ETOI(longPaths::download), tr("Ja"));
     ui->longPathsCB->insertItem(ETOI(longPaths::skip), tr("Nein"));
+
+    ui->overrideFilesCB->insertItem(ETOI(overrideFiles::skip), tr("Nachfragen"));
+    ui->overrideFilesCB->insertItem(ETOI(overrideFiles::skip), tr("Ja"));
+    ui->overrideFilesCB->insertItem(ETOI(overrideFiles::skip), tr("Nein"));
 }
 
 Options::~Options()
@@ -65,7 +69,6 @@ void Options::loadSettings()
 
     settings.beginGroup("misc");
     ui->minimizeInTrayCheckBox->setChecked(         settings.value("minimizeInTray", false).toBool());
-    ui->overrideFilesCheckBox->setChecked(          settings.value("overrideFiles", false).toBool());
     ui->checkForUpdateCheckBox->setChecked(         settings.value("checkForUpdates", true).toBool());
     ui->currentSemesterCheckBox->setChecked(        settings.value("currentSemester", true).toBool());
     ui->longPathsCB->setCurrentIndex(               settings.value("longPaths", ETOI(longPaths::ask)).toInt());
@@ -73,6 +76,7 @@ void Options::loadSettings()
         ui->longPathsLabel->setEnabled(false);
         ui->longPathsCB->setEnabled(false);
     }
+    ui->overrideFilesCB->setCurrentIndex(           settings.value("overrideFiles", ETOI(overrideFiles::ask)).toInt());
     settings.endGroup();
 
     settings.beginGroup("language");
@@ -106,10 +110,10 @@ void Options::saveSettings()
 
     settings.beginGroup("misc");
     settings.setValue("minimizeInTray",     ui->minimizeInTrayCheckBox->isChecked());
-    settings.setValue("overrideFiles",      ui->overrideFilesCheckBox->isChecked());
     settings.setValue("checkForUpdates",    ui->checkForUpdateCheckBox->isChecked());
     settings.setValue("currentSemester",    ui->currentSemesterCheckBox->isChecked());
     settings.setValue("longPaths",          ui->longPathsCB->currentIndex());
+    settings.setValue("overrideFiles",          ui->overrideFilesCB->currentIndex());
     settings.endGroup();
 
     settings.beginGroup("language");
@@ -202,11 +206,6 @@ bool Options::isAutoCloseAfterSyncCheckBoxChecked()
     return ui->autoCloseAfterSyncCheckBox->isChecked();
 }
 
-bool Options::isOverrideFilesCheckBoxChecked()
-{
-    return ui->overrideFilesCheckBox->isChecked();
-}
-
 bool Options::isCheckForUpdateCheckBoxChecked()
 {
     return ui->checkForUpdateCheckBox->isChecked();
@@ -230,6 +229,11 @@ bool Options::isCurrentSemesterCheckBoxChecked()
 Options::longPaths Options::getLongPathsSetting()
 {
     return static_cast<longPaths>(ui->longPathsCB->currentIndex());
+}
+
+Options::overrideFiles Options::getOverrideFilesSetting()
+{
+    return static_cast<overrideFiles>(ui->overrideFilesCB->currentIndex());
 }
 
 int Options::getLoginCounter()
@@ -287,6 +291,9 @@ void Options::retranslate()
     ui->longPathsCB->setItemText(ETOI(longPaths::ask), tr("Nachfragen"));
     ui->longPathsCB->setItemText(ETOI(longPaths::download), tr("Ja"));
     ui->longPathsCB->setItemText(ETOI(longPaths::skip), tr("Nein"));
+    ui->overrideFilesCB->setItemText(ETOI(overrideFiles::ask), tr("Nachfragen"));
+    ui->overrideFilesCB->setItemText(ETOI(overrideFiles::download), tr("Ja"));
+    ui->overrideFilesCB->setItemText(ETOI(overrideFiles::skip), tr("Nein"));
     ui->langCB->setItemText(ETOI(language::sys), tr("Systemsprache"));
 }
 
