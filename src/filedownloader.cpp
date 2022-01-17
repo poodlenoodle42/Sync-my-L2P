@@ -48,7 +48,7 @@ int FileDownloader::startNextDownload(QString fileName, QString courseName, QStr
     QLOG_DEBUG() << tr("Starte Download von") << fileUrl.url();
 
     // Anpassen der Labels
-    ui->progressLabel->setText(QString("Datei %1/%2").arg(itemNummer+1).arg(itemNumber));
+    ui->progressLabel->setText(QString("Datei %1/%2").arg(itemNummer+1, itemNumber));
     ui->veranstaltungLabel->setText(courseName);
     ui->dateinameLabel->setText(fileName);
     ui->progressBar->setFormat( "0 Byte / " % QString::number(correctSize(itemSize),'f',2) % " " % correctUnit(itemSize));

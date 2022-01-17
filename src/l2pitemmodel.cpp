@@ -389,7 +389,7 @@ void L2pItemModel::serverDataRecievedSlot(QNetworkReply *reply)
 
     QTime elapsed = QTime::fromMSecsSinceStartOfDay(QTime::currentTime().msecsSinceStartOfDay() - replyInfo.timeStart.msecsSinceStartOfDay());
     QLOG_DEBUG() << "Elapsed time: " << elapsed.toString() << " for request url: " << reply->url().toString();
-    emit showStatusMessage(QString("Aktualisierungsfortschritt: %1 von %2 Anfragen durchgeführt").arg(numRequests-requestQueue.size()).arg(numRequests));
+    emit showStatusMessage(QString("Aktualisierungsfortschritt: %1 von %2 Anfragen durchgeführt").arg(numRequests-requestQueue.size(), numRequests));
 
     switch (replyInfo.type)
     {
