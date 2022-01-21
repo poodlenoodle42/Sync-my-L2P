@@ -32,7 +32,7 @@ public:
     // Setting enums
     enum class language {sys=0,de,en,lb,sq};
     enum class longPaths {ask=0,download,skip};
-    enum class overrideFiles {ask=0,download,skip};
+    enum class overrideFiles {ask=0,override,skip};
 
     // Getter
     bool isUserDataSaveCheckBoxChecked();

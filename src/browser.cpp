@@ -161,7 +161,7 @@ void Browser::on_syncPushButton_clicked()
 
     const auto overrideFilesSetting = this->options->getOverrideFilesSetting();
     bool showOverrideFilesDialog = overrideFilesSetting == Options::overrideFiles::ask;
-    bool overrideFiles = overrideFilesSetting == Options::overrideFiles::download;
+    bool overrideFiles = overrideFilesSetting == Options::overrideFiles::override;
 
 #ifdef _WIN32
     const bool oldWindowsVersion = !Utils::longPathsSupported();

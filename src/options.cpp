@@ -32,8 +32,8 @@ Options::Options(QWidget *parent) :
     ui->longPathsCB->insertItem(ETOI(longPaths::download), tr("Ja"));
     ui->longPathsCB->insertItem(ETOI(longPaths::skip), tr("Nein"));
 
-    ui->overrideFilesCB->insertItem(ETOI(overrideFiles::skip), tr("Nachfragen"));
-    ui->overrideFilesCB->insertItem(ETOI(overrideFiles::skip), tr("Ja"));
+    ui->overrideFilesCB->insertItem(ETOI(overrideFiles::ask), tr("Nachfragen"));
+    ui->overrideFilesCB->insertItem(ETOI(overrideFiles::override), tr("Ja"));
     ui->overrideFilesCB->insertItem(ETOI(overrideFiles::skip), tr("Nein"));
 }
 
@@ -292,7 +292,7 @@ void Options::retranslate()
     ui->longPathsCB->setItemText(ETOI(longPaths::download), tr("Ja"));
     ui->longPathsCB->setItemText(ETOI(longPaths::skip), tr("Nein"));
     ui->overrideFilesCB->setItemText(ETOI(overrideFiles::ask), tr("Nachfragen"));
-    ui->overrideFilesCB->setItemText(ETOI(overrideFiles::download), tr("Ja"));
+    ui->overrideFilesCB->setItemText(ETOI(overrideFiles::override), tr("Ja"));
     ui->overrideFilesCB->setItemText(ETOI(overrideFiles::skip), tr("Nein"));
     ui->langCB->setItemText(ETOI(language::sys), tr("Systemsprache"));
 }
