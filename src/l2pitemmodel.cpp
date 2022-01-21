@@ -102,7 +102,7 @@ void L2pItemModel::requestMoodleFiles()
         requestQueue.append(openRequest);
         numRequests++;
 
-        QLOG_DEBUG() << tr("Erstellter Moodle-Request:") << request_url;
+        QLOG_DEBUG() << tr("Erstellter Moodle-Request: ") << request_url;
     }
 }
 
