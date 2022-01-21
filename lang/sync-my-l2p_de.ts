@@ -752,7 +752,7 @@ Jetzt %1 aufrufen?</source>
     </message>
     <message>
         <location filename="../gui/options.ui" line="274"/>
-        <source>Über Sync-my-RWTHmoodle</source>
+        <source>Über Sync-my-L2P</source>
         <translatorcomment>bis zur Änderung in Sync-my-Moodle o.ä.</translatorcomment>
         <translation type="unfinished">Über Sync-my-L²P</translation>
     </message>

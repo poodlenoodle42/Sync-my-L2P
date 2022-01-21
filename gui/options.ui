@@ -271,7 +271,7 @@
    <item>
     <widget class="QPushButton" name="aboutButton">
      <property name="text">
-      <string>Über Sync-my-RWTHmoodle</string>
+      <string>Über Sync-my-L2P</string>
      </property>
      <property name="icon">
       <iconset resource="../icons/icons.qrc">
