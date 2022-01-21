@@ -197,17 +197,17 @@
         <translation>Für die Datei &quot;%1&quot; steht eine aktualisierte Version zum Download bereit. Soll die lokale Datei überschrieben werden? Hierbei gehen bisherige Änderungen verloren! (Du kannst in den Einstellungen das Standardverhalten ändern.)</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="678"/>
+        <location filename="../src/browser.cpp" line="682"/>
         <source>Ordner öffnen</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="734"/>
+        <location filename="../src/browser.cpp" line="738"/>
         <source>Opening local file: </source>
         <translation>Öffne lokale Datei: </translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="801"/>
+        <location filename="../src/browser.cpp" line="805"/>
         <source>Finalized pulling data. Checking local state...</source>
         <translation>Externe Daten bezogen. Vergleiche lokale Daten...</translation>
     </message>
@@ -217,12 +217,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="684"/>
+        <location filename="../src/browser.cpp" line="688"/>
         <source>Öffnen</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="689"/>
+        <location filename="../src/browser.cpp" line="693"/>
         <source>Link kopieren</source>
         <translation></translation>
     </message>

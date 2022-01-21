@@ -675,6 +675,10 @@ void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
     if (RightClickedItem->type() == courseItem)
     {
         newCustomContextMenu.addAction(tr("Veranstaltungsseite öffnen"), this, SLOT(openCourse()));
+    }
+
+    if (RightClickedItem->type() == directoryItem || RightClickedItem->type() == courseItem)
+    {
         newCustomContextMenu.addAction(tr("Ordner öffnen"), this, SLOT(openFile()));
     }
 
