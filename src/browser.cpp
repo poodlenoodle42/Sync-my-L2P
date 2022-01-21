@@ -622,7 +622,7 @@ int Browser::overrideFilesDialog(QString filename)
 {
     QMessageBox msgBox;
     msgBox.setText(tr("Datei überschreiben?"));
-    msgBox.setInformativeText(QString(tr("Für die Datei \"%1\" liegt eine aktualisierte Version zum Download bereit. "
+    msgBox.setInformativeText(QString(tr("Für die Datei \"%1\" steht eine aktualisierte Version zum Download bereit. "
                                  "Soll die lokale Datei überschrieben werden? "
                                  "Hierbei gehen bisherige Änderungen verloren! (Du kannst in den Einstellungen das "
                                  "Standardverhalten ändern.)")).arg(filename));
