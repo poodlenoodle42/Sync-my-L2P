@@ -228,12 +228,12 @@
         <translation type="obsolete">Für die Datei &quot;%1&quot; steht eine aktualisierte Version zum Download bereit. Soll die lokale Datei überschrieben werden? Hierbei gehen bisherige Änderungen verloren! Du kannst in den Einstellungen das Standardverhalten ändern.</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="723"/>
+        <location filename="../src/browser.cpp" line="738"/>
         <source>Opening local file: </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="783"/>
+        <location filename="../src/browser.cpp" line="805"/>
         <source>Finalized pulling data. Checking local state...</source>
         <translation></translation>
     </message>
@@ -286,17 +286,22 @@
         <translation type="vanished">Item request to the API: </translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="678"/>
+        <location filename="../src/browser.cpp" line="677"/>
         <source>Veranstaltungsseite öffnen</source>
         <translation>Open course page</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="684"/>
+        <location filename="../src/browser.cpp" line="682"/>
+        <source>Ordner öffnen</source>
+        <translation>Open folder</translation>
+    </message>
+    <message>
+        <location filename="../src/browser.cpp" line="688"/>
         <source>Öffnen</source>
         <translation>Open</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="689"/>
+        <location filename="../src/browser.cpp" line="693"/>
         <source>Link kopieren</source>
         <translation>Copy link</translation>
     </message>
@@ -401,8 +406,12 @@
     </message>
     <message>
         <location filename="../gui/info.ui" line="163"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/rwthmoodle/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sourcecode: &lt;br/&gt;&lt;a href=&quot;https://github.com/rwthmoodle/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/Sync-my-L2P/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sourcecode: &lt;br/&gt;&lt;a href=&quot;https://github.com/Sync-my-L2P/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sourcecode: &lt;br/&gt;&lt;a href=&quot;https://github.com/Sync-my-L2P/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../gui/info.ui" line="186"/>
@@ -425,7 +434,7 @@
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="122"/>
         <source>Vermuteter Pfad der Progammdaten: </source>
-        <translation type="unfinished"></translation>
+        <translation>Assumed path to program data: </translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="128"/>
@@ -652,8 +661,12 @@
     </message>
     <message>
         <location filename="../src/login.cpp" line="226"/>
+        <source>Du hast Sync-my-L2P noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
+        <translation>You have not granted Sync-my-L2P access to your Moodle data. Please log in and authorize the application.</translation>
+    </message>
+    <message>
         <source>Du hast Sync-my-RWTHmoodle noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
-        <translation>You have not granted Sync-my-L²P access to your Moodle data. Please log in and authorize the application.</translation>
+        <translation type="vanished">You have not granted Sync-my-L²P access to your Moodle data. Please log in and authorize the application.</translation>
     </message>
     <message>
         <source>Accesstoken: </source>
@@ -761,9 +774,13 @@
         <translation type="obsolete">Sync-my-L²P</translation>
     </message>
     <message>
-        <location filename="../gui/mymainwindow.ui" line="26"/>
         <source>Sync-my-RWTHmoodle</source>
-        <translation>Sync-my-L²P</translation>
+        <translation type="vanished">Sync-my-L²P</translation>
+    </message>
+    <message>
+        <location filename="../gui/mymainwindow.ui" line="26"/>
+        <source>Sync-my-L2P</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../gui/mymainwindow.ui" line="45"/>
@@ -898,9 +915,8 @@ You can deactivate this message in the options tab.</translation>
         <translation>Browse</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="274"/>
         <source>Über Sync-my-RWTHmoodle</source>
-        <translation>About Sync-my-L2P</translation>
+        <translation type="vanished">About Sync-my-L2P</translation>
     </message>
     <message>
         <source>Filter für Rubriken</source>
@@ -1006,8 +1022,9 @@ You can deactivate this message in the options tab.</translation>
         <translation>Download files with too long paths:</translation>
     </message>
     <message>
+        <location filename="../gui/options.ui" line="274"/>
         <source>Über Sync-my-L2P</source>
-        <translation type="vanished">About Sync-my-L2P</translation>
+        <translation>About Sync-my-L2P</translation>
     </message>
     <message>
         <location filename="../src/options.cpp" line="25"/>

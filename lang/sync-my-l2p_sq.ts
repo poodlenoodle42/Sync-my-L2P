@@ -225,12 +225,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="723"/>
+        <location filename="../src/browser.cpp" line="682"/>
+        <source>Ordner öffnen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/browser.cpp" line="738"/>
         <source>Opening local file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="783"/>
+        <location filename="../src/browser.cpp" line="805"/>
         <source>Finalized pulling data. Checking local state...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -270,17 +275,17 @@
         <translation type="vanished">Kërkim elementi nga API:</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="678"/>
+        <location filename="../src/browser.cpp" line="677"/>
         <source>Veranstaltungsseite öffnen</source>
         <translation>Hap faqen e eventit</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="684"/>
+        <location filename="../src/browser.cpp" line="688"/>
         <source>Öffnen</source>
         <translation>Hap</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="689"/>
+        <location filename="../src/browser.cpp" line="693"/>
         <source>Link kopieren</source>
         <translation>Kopjo linkun</translation>
     </message>
@@ -385,7 +390,7 @@
     </message>
     <message>
         <location filename="../gui/info.ui" line="163"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/Sync-my-L2P/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/rwthmoodle/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -630,7 +635,7 @@
     </message>
     <message>
         <location filename="../src/login.cpp" line="226"/>
-        <source>Du hast Sync-my-RWTHmoodle noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
+        <source>Du hast Sync-my-L2P noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -739,7 +744,7 @@
     </message>
     <message>
         <location filename="../gui/mymainwindow.ui" line="26"/>
-        <source>Sync-my-RWTHmoodle</source>
+        <source>Sync-my-L2P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -869,11 +874,6 @@ Këtë mesazh mund ta çaktivizosh tek menuja e opsioneve.</translation>
         <translation>Kërko</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="274"/>
-        <source>Über Sync-my-RWTHmoodle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Filter für Rubriken</source>
         <translation type="vanished">FIltër për rubrikat</translation>
     </message>
@@ -977,8 +977,9 @@ Këtë mesazh mund ta çaktivizosh tek menuja e opsioneve.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../gui/options.ui" line="274"/>
         <source>Über Sync-my-L2P</source>
-        <translation type="vanished">Rreth Sync-my-L2P</translation>
+        <translation>Rreth Sync-my-L2P</translation>
     </message>
     <message>
         <location filename="../src/options.cpp" line="25"/>

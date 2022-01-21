@@ -197,27 +197,32 @@
         <translation>Für die Datei &quot;%1&quot; steht eine aktualisierte Version zum Download bereit. Soll die lokale Datei überschrieben werden? Hierbei gehen bisherige Änderungen verloren! (Du kannst in den Einstellungen das Standardverhalten ändern.)</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="723"/>
+        <location filename="../src/browser.cpp" line="682"/>
+        <source>Ordner öffnen</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../src/browser.cpp" line="738"/>
         <source>Opening local file: </source>
         <translation>Öffne lokale Datei: </translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="783"/>
+        <location filename="../src/browser.cpp" line="805"/>
         <source>Finalized pulling data. Checking local state...</source>
         <translation>Externe Daten bezogen. Vergleiche lokale Daten...</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="678"/>
+        <location filename="../src/browser.cpp" line="677"/>
         <source>Veranstaltungsseite öffnen</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="684"/>
+        <location filename="../src/browser.cpp" line="688"/>
         <source>Öffnen</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="689"/>
+        <location filename="../src/browser.cpp" line="693"/>
         <source>Link kopieren</source>
         <translation></translation>
     </message>
@@ -259,7 +264,7 @@
     <message>
         <location filename="../src/filedownloader.cpp" line="48"/>
         <source>Starte Download von </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/filedownloader.cpp" line="68"/>
@@ -296,7 +301,7 @@
     </message>
     <message>
         <location filename="../gui/info.ui" line="163"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/Sync-my-L2P/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/rwthmoodle/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
     <message>
@@ -333,92 +338,92 @@
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="57"/>
         <source>Sende Request für Veranstaltungen von Moodle</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="122"/>
         <source>Vermuteter Pfad der Progammdaten: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="128"/>
         <source>Kann keine Daten von Festplatte laden</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="137"/>
         <source>Geladene Datei enthält keine Daten.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="146"/>
         <source>Kann Daten von Festplatte nicht fehlerfrei einlesen: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="176"/>
         <source>Pfad nicht erstellbar</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="177"/>
         <source>Konnte Pfad für Speicherung der Kursinformationen nicht erstellen</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="183"/>
         <source>Kursinformationen nicht speicherbar.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="323"/>
         <source>Beim Abruf der Veranstaltungen ist ein Fehler aufgetreten</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="279"/>
         <source>Beim Abruf der Moodle-Veranstaltungen ist ein Fehler aufgetreten</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="283"/>
         <source>Moodle-Veranstaltungen empfangen</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="319"/>
         <source>SSL Fehler für: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="304"/>
         <source>Moodle-Dateiinformationen empfangen: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="105"/>
         <source>Erstellter Moodle-Request: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="311"/>
         <source>Moodle-Dateiinformationen geparst: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="382"/>
         <source>Unerwartete Serverantwort erhalten</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="406"/>
         <source>Serverantwort wurde unbekannter Typ zugeordnet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/l2pitemmodel.cpp" line="420"/>
         <source>Aktualisierung beendet</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -559,7 +564,7 @@
     </message>
     <message>
         <location filename="../src/login.cpp" line="226"/>
-        <source>Du hast Sync-my-RWTHmoodle noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
+        <source>Du hast Sync-my-L2P noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
         <translation></translation>
     </message>
     <message>
@@ -635,9 +640,13 @@
 <context>
     <name>MyMainWindow</name>
     <message>
-        <location filename="../gui/mymainwindow.ui" line="26"/>
         <source>Sync-my-RWTHmoodle</source>
-        <translation type="unfinished">Sync-my-L²P</translation>
+        <translation type="obsolete">Sync-my-L²P</translation>
+    </message>
+    <message>
+        <location filename="../gui/mymainwindow.ui" line="26"/>
+        <source>Sync-my-L2P</source>
+        <translation></translation>
     </message>
     <message>
         <location filename="../gui/mymainwindow.ui" line="45"/>
@@ -668,29 +677,29 @@
         <location filename="../src/mymainwindow.cpp" line="165"/>
         <source>Konnte Version nicht überprüfen:
 </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mymainwindow.cpp" line="170"/>
         <source>Aktuelle Version laut Server:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mymainwindow.cpp" line="184"/>
         <source>Neue Version verfügbar!</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mymainwindow.cpp" line="185"/>
         <source>Auf der offiziellen Webseite ist eine neue Version verfügbar!
 Diese Nachricht kannst du in den Optionen deaktivieren.
 Jetzt %1 aufrufen?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mymainwindow.cpp" line="195"/>
         <source>Diese Version ist aktuell</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/mymainwindow.cpp" line="221"/>
@@ -754,7 +763,7 @@ Jetzt %1 aufrufen?</source>
         <location filename="../gui/options.ui" line="274"/>
         <source>Über Sync-my-L2P</source>
         <translatorcomment>bis zur Änderung in Sync-my-Moodle o.ä.</translatorcomment>
-        <translation type="unfinished">Über Sync-my-L²P</translation>
+        <translation>Über Sync-my-L²P</translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="124"/>
@@ -794,34 +803,34 @@ Jetzt %1 aufrufen?</source>
     <message>
         <location filename="../gui/options.ui" line="169"/>
         <source>Beim Start nach neuer Version suchen</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="245"/>
         <location filename="../gui/options.ui" line="255"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sollen lokale Dateien mit neueren Versionen überschrieben werden?&lt;/p&gt;&lt;p&gt;Vom Nutzer gemachte Änderungen werden hierbei überschrieben und können nicht wieder hergestellt werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="248"/>
         <source>Dateien überschreiben:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="264"/>
         <source>Nur aktuelles Semester anzeigen</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="224"/>
         <location filename="../gui/options.ui" line="234"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sollen Dateien mit zu langen Pfaden trotzdem heruntergeladen werden?&lt;/p&gt;&lt;p&gt;In älteren Windows-Versionen sind Dateien mit über 260 Zeichen langen Pfaden oft problematisch. Sie können meist nicht geöffnet oder gelöscht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../gui/options.ui" line="227"/>
         <source>Dateien mit zu langen Pfaden herunterladen:</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/options.cpp" line="25"/>
@@ -835,7 +844,7 @@ Jetzt %1 aufrufen?</source>
         <location filename="../src/options.cpp" line="291"/>
         <location filename="../src/options.cpp" line="294"/>
         <source>Nachfragen</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/options.cpp" line="32"/>
@@ -843,7 +852,7 @@ Jetzt %1 aufrufen?</source>
         <location filename="../src/options.cpp" line="292"/>
         <location filename="../src/options.cpp" line="295"/>
         <source>Ja</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/options.cpp" line="33"/>
@@ -851,7 +860,7 @@ Jetzt %1 aufrufen?</source>
         <location filename="../src/options.cpp" line="293"/>
         <location filename="../src/options.cpp" line="296"/>
         <source>Nein</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/options.cpp" line="175"/>
@@ -880,29 +889,29 @@ Jetzt %1 aufrufen?</source>
         <location filename="../src/parser.cpp" line="31"/>
         <location filename="../src/parser.cpp" line="78"/>
         <source>Moodle-Kursinformationen leer bzw. nicht lesbar.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/parser.cpp" line="37"/>
         <source>Status der Moodle-Kursinformationen nicht ok: </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/parser.cpp" line="63"/>
         <source>Moodle-Veranstaltung</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/parser.cpp" line="84"/>
         <source>Status der Moodle-Kursinformationen nicht ok: 
 </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../src/parser.cpp" line="92"/>
         <source>Moodle-Kursinformationen enthalten einen Fehler: 
 </source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
