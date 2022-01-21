@@ -101,7 +101,9 @@ private:
 
 private slots:
     void openFile();
+    void openFile(Structureelement* item);
     void openCourse();
+    void openCourse(Structureelement* item);
     void on_searchPushButton_clicked();
     void on_removeSelectionPushButton_clicked();
     void on_addSelectionPushButton_clicked();
@@ -111,6 +113,7 @@ private slots:
     void on_dataTreeView_customContextMenuRequested(const QPoint &pos);
     void on_showNewDataPushButton_clicked();
     void copyUrlToClipboardSlot();
+    void copyUrlToClipboardSlot(Structureelement* item);
     void successfulLoginSlot();
     void itemModelReloadedSlot();
 };

@@ -648,8 +648,7 @@ void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
 
     if (item->type() == fileItem)
     {
-        lastRightClickItem = item;
-        openFile();
+        openFile(item);
     }
 }
 
@@ -700,10 +699,21 @@ void Browser::openCourse()
     QDesktopServices::openUrl(lastRightClickItem->data(urlRole).toUrl());
 }
 
+void Browser::openCourse(Structureelement* item)
+{
+    // Öffnen der URL des mit der rechten Maustaste geklickten Items
+    QDesktopServices::openUrl(item->data(urlRole).toUrl());
+}
+
 void Browser::openFile()
 {
     Structureelement* item = lastRightClickItem;
 
+    openFile(item);
+}
+
+void Browser::openFile(Structureelement* item)
+{
     QUrl url = getFileURL(item);
 
     QDesktopServices::openUrl(url);
@@ -760,14 +770,21 @@ void Browser::on_showNewDataPushButton_clicked()
 
 void Browser::copyUrlToClipboardSlot()
 {
+    Structureelement* item = lastRightClickItem;
+
+    copyUrlToClipboardSlot(item);
+}
+
+void Browser::copyUrlToClipboardSlot(Structureelement* item)
+{
     QString url;
-    if(lastRightClickItem->type() == fileItem)
+    if(item->type() == fileItem)
     {
-        url = getFileURL(lastRightClickItem).toString();
+        url = getFileURL(item).toString();
     }
-    else if(lastRightClickItem->type() == courseItem)
+    else if(item->type() == courseItem)
     {
-        url = lastRightClickItem->data(urlRole).toString();
+        url = item->data(urlRole).toString();
     }
 
     Utils::copyTextToClipboard(url);
