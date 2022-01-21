@@ -1,6 +1,5 @@
 #include "browser.h"
 #include "ui_browser.h"
-#include "message.h"
 #include "urls.h"
 
 #include "options.h"
@@ -160,6 +159,10 @@ void Browser::on_syncPushButton_clicked()
     QItemSelection newSelection;
     ui->dataTreeView->collapseAll();
 
+    const auto overrideFilesSetting = this->options->getOverrideFilesSetting();
+    bool showOverrideFilesDialog = overrideFilesSetting == Options::overrideFiles::ask;
+    bool overrideFiles = overrideFilesSetting == Options::overrideFiles::override;
+
 #ifdef _WIN32
     const bool oldWindowsVersion = !Utils::longPathsSupported();
     const auto longPathsSetting = this->options->getLongPathsSetting();
@@ -239,33 +242,59 @@ void Browser::on_syncPushButton_clicked()
         if(filename.contains(".aspx"))
             continue;
 
-        bool downloadFile = options->isOverrideFilesCheckBoxChecked() &&
-                QFileInfo(directory, filename).lastModified().toMSecsSinceEpoch()/1000 < currentElement->data(dateRole).toDateTime().toMSecsSinceEpoch()/1000;
-        downloadFile = downloadFile || !directory.exists(filename);
+        bool fileExists = directory.exists(filename);
+        bool downloadFile = !fileExists;
 
+        if (fileExists && (currentElement->data(synchronisedRole) == NOT_SYNCHRONISED)) // File is out of sync but already exists: Implies either local changes, corrupt file or updated remote file
+        {
+            if(showOverrideFilesDialog)
+            {
+                // ask user if
+                const int res = Browser::overrideFilesDialog(currentElement->text());
+                bool cancel = false;
+                switch (res)
+                {
+                case QMessageBox::Yes:
+                default:
+                    overrideFiles = true;
+                    break;
+                case QMessageBox::YesToAll: // Apply on all and make standard
+                    overrideFiles = true;
+                    showOverrideFilesDialog = false;
+                    break;
+                case QMessageBox::No:
+                    overrideFiles = false;
+                    break;
+                case QMessageBox::NoToAll:
+                    overrideFiles = false;
+                    showOverrideFilesDialog = false;
+                    break;
+                case QMessageBox::Cancel:
+                    cancel = true;
+                    break;
+                }
+                if (cancel)
+                {
+                    break;
+                }
+
+            }
+            if (!overrideFiles)
+            {
+                continue;
+            }
+            downloadFile = overrideFiles;
+        }
         // Datei existiert noch nicht
         if(downloadFile)
         {
 
 
-            auto role = currentElement->data(systemEXRole);
-            QString downloadurl = currentElement->data(urlRole).toUrl().toDisplayString(QUrl::FullyDecoded);
+            QString downloadurl = currentElement->data(urlRole).toString();
             QString token = options->getAccessToken();
 
             QString url;
-            if (role == moodle){
-                url = moodleDownloadFileUrl % "/" % filename % "?downloadurl=" % downloadurl % "&token=" % token;
-            } else {
-                url = l2pDownloadFileUrl %
-                    currentElement->text() %
-                    QString("?accessToken=") %
-                    options->getAccessToken() %
-                    QString("&cid=") %
-                    currentElement->data(cidRole).toString() %
-                    QString("&downloadUrl=") %
-                    currentElement->data(urlRole).toUrl().toDisplayString(QUrl::FullyDecoded);
-
-            }
+            url = moodleDownloadFileUrl % "/" % filename % "?downloadurl=" % downloadurl % "&token=" % token;
 
 
             if (!loader->startNextDownload(filename,
@@ -308,7 +337,7 @@ void Browser::on_syncPushButton_clicked()
     QMessageBox messageBox(this);
     QTimer::singleShot(10000, &messageBox, SLOT(accept()));
     messageBox.setText
-    (tr("Synchronisation mit dem L2P der RWTH Aachen abgeschlossen."));
+    (tr("Synchronisation mit RWTHmoodle abgeschlossen."));
     messageBox.setIcon(QMessageBox::NoIcon);
     messageBox.setInformativeText(QString
                                   (tr("Es wurden %1 von %2 eingebundenen Dateien synchronisiert.\n(Dieses Fenster schließt nach 10 Sek. automatisch.)")).arg
@@ -589,6 +618,19 @@ int Browser::pathTooLongDialog(QString filename)
 }
 #endif
 
+int Browser::overrideFilesDialog(QString filename)
+{
+    QMessageBox msgBox;
+    msgBox.setText(tr("Datei überschreiben?"));
+    msgBox.setInformativeText(QString(tr("Für die Datei \"%1\" steht eine aktualisierte Version zum Download bereit. "
+                                 "Soll die lokale Datei überschrieben werden? "
+                                 "Hierbei gehen bisherige Änderungen verloren! (Du kannst in den Einstellungen das "
+                                 "Standardverhalten ändern.)")).arg(filename));
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::YesToAll | QMessageBox::No | QMessageBox::NoToAll | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Yes);
+    return msgBox.exec();
+}
+
 void Browser::on_openDownloadfolderPushButton_clicked()
 {
     // Betriebssystem soll mit dem Standardprogramm den Pfad öffnen
@@ -598,7 +640,6 @@ void Browser::on_openDownloadfolderPushButton_clicked()
                                QUrl::TolerantMode));
 }
 
-/// Dateien bei einem Doppelklick öffnen
 void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
 {
     Structureelement *item =
@@ -607,35 +648,7 @@ void Browser::on_dataTreeView_doubleClicked(const QModelIndex &index)
 
     if (item->type() == fileItem)
     {
-        QFileInfo fileInfo(Utils::getElementLocalPath(item,
-                                                      options->downloadFolderLineEditText(),
-                                                      true,
-                                                      false));
-
-        QString fileUrl;
-
-        // Überprüfung, ob Datei lokal oder im L2P geöffnet werden soll
-        if(fileInfo.exists() && fileInfo.isFile())
-        {
-            fileUrl = Utils::getElementLocalPath(item, options->downloadFolderLineEditText());
-        }
-        else
-        {
-            fileUrl = Utils::getElementRemotePath(item);
-        }
-
-        QDesktopServices::openUrl(QUrl(fileUrl));
-    }
-    else if (item->type() == messageItem)
-    {
-        // Erzeugt das Popup-Fester mit der anzuzeigenden Nachricht
-        message messages;
-
-        messages.updateSubject(item->data(topicRole).toString());
-        messages.updateMessage(item->data(bodyRole).toString().toUtf8());
-        messages.updateAuthor(item->data(authorRole).toString());
-        messages.updateDate(item->data(dateRole).toDateTime().toString("ddd dd.MM.yyyy hh:mm"));
-        messages.exec();
+        openFile(item);
     }
 }
 
@@ -658,35 +671,21 @@ void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
     // Erstellen eines neuen Menus
     QMenu newCustomContextMenu(this);
 
-    // Öffnen der Veranstaltungsseite im L2P
+    // Öffnen der Veranstaltungsseite in RWTHmoodle
     if (RightClickedItem->type() == courseItem)
     {
         newCustomContextMenu.addAction(tr("Veranstaltungsseite öffnen"), this, SLOT(openCourse()));
     }
 
-    // Öffnen des Elements lokal oder im L2P
-    if (RightClickedItem->type() != messageItem)
+    // Öffnen des Elements lokal oder in RWTHmoodle
+    if (RightClickedItem->type() == fileItem)
     {
-    newCustomContextMenu.addAction(tr("Öffnen"), this, SLOT(openFile()));
+        newCustomContextMenu.addAction(tr("Öffnen"), this, SLOT(openFile()));
     }
     // Kopieren der URL
     if(RightClickedItem->type() == courseItem || RightClickedItem->type() == fileItem)
     {
         newCustomContextMenu.addAction(tr("Link kopieren"), this, SLOT(copyUrlToClipboardSlot()));
-    }
-
-    // Öffnen der Nachricht
-    if(RightClickedItem->type()== messageItem)
-    {
-        newCustomContextMenu.addAction(tr("Nachricht anzeigen"), this, SLOT(openMessage()));
-
-    }
-
-    // Öffnen der Nachricht im Quelltext
-    if(RightClickedItem->type()== messageItem)
-    {
-        newCustomContextMenu.addAction(tr("Nachricht im Quelltext anzeigen"), this, SLOT(openSourceMessage()));
-
     }
 
     // Anzeigen des Menus an der Mausposition
@@ -700,55 +699,47 @@ void Browser::openCourse()
     QDesktopServices::openUrl(lastRightClickItem->data(urlRole).toUrl());
 }
 
-void Browser::openMessage()
+void Browser::openCourse(Structureelement* item)
 {
-    // Erzeugt das Popup-Fester mit der anzuzeigenden Nachricht
-    message messages;
-
-    messages.updateSubject(lastRightClickItem->data(topicRole).toString());
-    messages.updateMessage(lastRightClickItem->data(bodyRole).toString().toUtf8());
-    messages.updateAuthor(lastRightClickItem->data(authorRole).toString());
-    messages.updateDate(lastRightClickItem->data(dateRole).toDateTime().toString("ddd dd.MM.yyyy hh:mm"));
-
-    messages.exec();
-}
-
-void Browser::openSourceMessage()
-{
-    // Erzeugt das Popup-Fester mit der anzuzeigenden Nachricht
-    message messages;
-
-    messages.updateSubject(lastRightClickItem->data(topicRole).toString());
-    messages.updateMessage(lastRightClickItem->data(bodyRole).toString().toHtmlEscaped());
-    messages.updateAuthor(lastRightClickItem->data(authorRole).toString());
-    messages.updateDate(lastRightClickItem->data(dateRole).toDateTime().toString("ddd dd.MM.yyyy hh:mm"));
-
-    messages.exec();
+    // Öffnen der URL des mit der rechten Maustaste geklickten Items
+    QDesktopServices::openUrl(item->data(urlRole).toUrl());
 }
 
 void Browser::openFile()
 {
-    QFileInfo fileInfo(Utils::getElementLocalPath(lastRightClickItem,
+    Structureelement* item = lastRightClickItem;
+
+    openFile(item);
+}
+
+void Browser::openFile(Structureelement* item)
+{
+    QUrl url = getFileURL(item);
+
+    QDesktopServices::openUrl(url);
+}
+
+QUrl Browser::getFileURL(Structureelement* item)
+{
+    QUrl url;
+    QFileInfo fileInfo(Utils::getElementLocalPath(item,
                                                   options->downloadFolderLineEditText(),
                                                   true,
                                                   false));
-    auto typeEX = lastRightClickItem->data(typeEXRole);
-    auto systemEX = lastRightClickItem->data(systemEXRole);
-
-    // Überprüfung, ob Datei lokal oder im L2P geöffnet werden soll
-    QUrl url;
+    // Überprüfung, ob Datei lokal oder in RWTHmoodle geöffnet werden soll
     if(fileInfo.exists())
     {
-        QString fileUrl = Utils::getElementLocalPath(lastRightClickItem, options->downloadFolderLineEditText());
+        QString fileUrl = Utils::getElementLocalPath(item, options->downloadFolderLineEditText(), true, true);
+        QLOG_DEBUG() << tr("Opening local file: ") << fileUrl;
         url = QUrl(fileUrl);
     }
     else
     {
-        QString fileUrl = Utils::getElementRemotePath(lastRightClickItem);
+        QString token = options->getAccessToken();
+        QString fileUrl = Utils::getElementRemotePath(item) % "&token=" % token;
         url = QUrl(fileUrl);
     }
-
-    QDesktopServices::openUrl(url);
+    return url;
 }
 
 void Browser::on_showNewDataPushButton_clicked()
@@ -779,14 +770,21 @@ void Browser::on_showNewDataPushButton_clicked()
 
 void Browser::copyUrlToClipboardSlot()
 {
+    Structureelement* item = lastRightClickItem;
+
+    copyUrlToClipboardSlot(item);
+}
+
+void Browser::copyUrlToClipboardSlot(Structureelement* item)
+{
     QString url;
-    if(lastRightClickItem->type() == fileItem)
+    if(item->type() == fileItem)
     {
-        url = Utils::getElementRemotePath(lastRightClickItem);
+        url = getFileURL(item).toString();
     }
-    else if(lastRightClickItem->type() == courseItem)
+    else if(item->type() == courseItem)
     {
-        url = lastRightClickItem->data(urlRole).toString();
+        url = item->data(urlRole).toString();
     }
 
     Utils::copyTextToClipboard(url);
@@ -799,9 +797,12 @@ void Browser::successfulLoginSlot()
 
 void Browser::itemModelReloadedSlot()
 {
+    QLOG_DEBUG() << tr("Finalized pulling data. Checking local state...");
     updateButtons();
 
-    //Utils::checkAllFilesIfSynchronised(l2pItemModel->getData(), options->downloadFolderLineEditText());
+    QList<Structureelement*> items;
+    getStructureelementsList(l2pItemModel->getData()->invisibleRootItem(), items);
+    Utils::checkAllFilesIfSynchronised(items, options->downloadFolderLineEditText());
 
     // Anzeigen aller neuen, unsynchronisierten Dateien
     if (refreshCounter == 1)

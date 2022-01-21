@@ -40,7 +40,6 @@ SOURCES += \
     src/logger.cpp \
     src/login.cpp \
     src/logindialog.cpp \
-    src/message.cpp \
     src/mymainwindow.cpp \
     src/mysortfilterproxymodel.cpp \
     src/options.cpp \
@@ -60,7 +59,6 @@ HEADERS  += \
     include/logger.h \
     include/login.h \
     include/logindialog.h \
-    include/message.h \
     include/mymainwindow.h \
     include/mysortfilterproxymodel.h \
     include/options.h \

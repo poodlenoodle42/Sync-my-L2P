@@ -119,76 +119,6 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="filterOptionsBox">
-     <property name="title">
-      <string>Filter für Rubriken</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="sharedDocumentsCheckBox">
-        <property name="text">
-         <string>Gemeinsame Dokumente</string>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QCheckBox" name="assignmentsCheckBox">
-        <property name="text">
-         <string>Übungen</string>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QCheckBox" name="learningMaterialsCheckBox">
-        <property name="text">
-         <string>Lernmaterialien</string>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QCheckBox" name="mediaLibrarysCheckBox">
-        <property name="text">
-         <string>Medienbibliothek</string>
-        </property>
-        <property name="checked">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QCheckBox" name="announcementAttachmentsCheckBox">
-        <property name="text">
-         <string>Ankündigungen</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QCheckBox" name="emailAttachmentsCheckBox">
-        <property name="text">
-         <string>E-Mails</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QCheckBox" name="tutorDomainCheckBox">
-        <property name="text">
-         <string>Tutor Dokumente</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
     <widget class="QGroupBox" name="automatisationBox">
      <property name="title">
       <string>Automatisation</string>
@@ -233,16 +163,6 @@
       <string>Sonstiges</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="overrideFilesCheckBox">
-        <property name="toolTip">
-         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wenn im L2P eine neue Version einer Datei vorhanden ist, wird die alte Version auf der Festplatte überschrieben.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;ACHTUNG:&lt;/span&gt; Beim Überschreiben gehen eigene Änderungen an den Dateien (Kommentare, etc.) verloren.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-        </property>
-        <property name="text">
-         <string>Dateien überschreiben</string>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="0">
        <widget class="QCheckBox" name="checkForUpdateCheckBox">
         <property name="text">
@@ -296,13 +216,6 @@
         </item>
        </layout>
       </item>
-      <item row="4" column="1">
-       <widget class="QCheckBox" name="currentSemesterCheckBox">
-        <property name="text">
-         <string>Nur aktuelles Semester anzeigen</string>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
@@ -323,6 +236,34 @@
          </widget>
         </item>
        </layout>
+      </item>
+      <item row="1" column="1">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QLabel" name="overrideFilesLabel">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sollen lokale Dateien mit neueren Versionen überschrieben werden?&lt;/p&gt;&lt;p&gt;Vom Nutzer gemachte Änderungen werden hierbei überschrieben und können nicht wieder hergestellt werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="text">
+           <string>Dateien überschreiben:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="overrideFilesCB">
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sollen lokale Dateien mit neueren Versionen überschrieben werden?&lt;/p&gt;&lt;p&gt;Vom Nutzer gemachte Änderungen werden hierbei überschrieben und können nicht wieder hergestellt werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="4" column="1">
+       <widget class="QCheckBox" name="currentSemesterCheckBox">
+        <property name="text">
+         <string>Nur aktuelles Semester anzeigen</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

@@ -77,7 +77,8 @@ private:
 
     void updateButtons();
     void setupSignalsSlots();
-
+    int overrideFilesDialog(QString filename);
+    QUrl getFileURL(Structureelement* item);
 #ifdef _WIN32
     static int pathTooLongDialog(QString filename);
 #endif
@@ -90,6 +91,8 @@ private:
 
     Structureelement* lastRightClickItem;
 
+
+
     Options *options;
 
     int refreshCounter = 0;
@@ -98,9 +101,9 @@ private:
 
 private slots:
     void openFile();
-    void openMessage();
-    void openSourceMessage();
+    void openFile(Structureelement* item);
     void openCourse();
+    void openCourse(Structureelement* item);
     void on_searchPushButton_clicked();
     void on_removeSelectionPushButton_clicked();
     void on_addSelectionPushButton_clicked();
@@ -110,6 +113,7 @@ private slots:
     void on_dataTreeView_customContextMenuRequested(const QPoint &pos);
     void on_showNewDataPushButton_clicked();
     void copyUrlToClipboardSlot();
+    void copyUrlToClipboardSlot(Structureelement* item);
     void successfulLoginSlot();
     void itemModelReloadedSlot();
 };

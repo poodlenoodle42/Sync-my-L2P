@@ -45,7 +45,7 @@ FileDownloader::~FileDownloader()
 
 int FileDownloader::startNextDownload(QString fileName, QString courseName, QString filePath, QUrl fileUrl, int itemNummer, int itemSize, int time)
 {
-    QLOG_DEBUG() << tr("Starte Download von") << fileUrl.url();
+    QLOG_DEBUG() << tr("Starte Download von ") << fileUrl.url();
 
     // Anpassen der Labels
     ui->progressLabel->setText(QString("Datei %1/%2").arg(itemNummer+1).arg(itemNumber));

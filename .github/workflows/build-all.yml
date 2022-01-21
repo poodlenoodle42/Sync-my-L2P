@@ -413,30 +413,37 @@ jobs:
           file(RENAME "./windows/build/$ENV{PRODUCT_NAME}-${{ steps.version.outputs.humanreadable }}-${installer_platform}-installer.exe" "${artifact_path}")
 
         elseif ("${{ runner.os }}" STREQUAL "Linux")
+          # Set env variables: PATH ensures usage of compiled QT binaries, VERSION uses GitHub release tag.
+          # LD_LIBRARY_PATH is not needed if libraries are copied to /build/usr/lib correctly!
           set(ENV{PATH} "${{ steps.qt.outputs.qt_dir }}/bin/:$ENV{PATH}")
-          set(ENV{LD_LIBRARY_PATH} "${{ steps.qt_creator.outputs.qtc_directory }}/lib/Qt/lib:$ENV{LD_LIBRARY_PATH}")
-          set(ENV{LD_LIBRARY_PATH} "${{ steps.qt_creator.outputs.qtc_directory }}/lib/qtcreator:$ENV{LD_LIBRARY_PATH}")
-          set(ENV{LD_LIBRARY_PATH} "${{ steps.qt_creator.outputs.qtc_directory }}/lib/qtcreator/plugins:$ENV{LD_LIBRARY_PATH}")
-          set(ENV{LD_LIBRARY_PATH} "$ENV{GITHUB_WORKSPACE}/linux/lib:$ENV{LD_LIBRARY_PATH}")
+          set(ENV{VERSION} "${{ steps.version.outputs.humanreadable }}")
 
-          file(DOWNLOAD "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
-            ./linux/linuxdeployqt-continuous-x86_64.AppImage SHOW_PROGRESS)
-          execute_process(COMMAND dos2unix Sync-my-L2P.desktop WORKING_DIRECTORY ./linux/)
+          file(DOWNLOAD "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage" ./linux/linuxdeployqt-continuous-x86_64.AppImage SHOW_PROGRESS)
           execute_process(COMMAND sudo chmod a+x ./linuxdeployqt-continuous-x86_64.AppImage WORKING_DIRECTORY ./linux/)
           execute_process(COMMAND ./linuxdeployqt-continuous-x86_64.AppImage --appimage-extract WORKING_DIRECTORY ./linux/)
           file(REMOVE ./linux/linuxdeployqt-continuous-x86_64.AppImage)
+
+          # Expected /usr/ file structure for clean AppImage
+          file(MAKE_DIRECTORY "./build")
+          file(MAKE_DIRECTORY "./build/usr")
+          file(MAKE_DIRECTORY "./build/usr/bin")
+          file(MAKE_DIRECTORY "./build/usr/lib")
+          file(MAKE_DIRECTORY "./build/usr/share")
+          file(MAKE_DIRECTORY "./build/usr/share/applications")
+          file(MAKE_DIRECTORY "./build/usr/share/icons")
+
+          # Copy compiled binary, precompiled libs, icons, desktop-file (config details for AppImage deploy)
+          file(COPY "./bin/Sync-my-L2P" DESTINATION "./build/usr/bin/")
+          file(COPY "./linux/lib/" DESTINATION "./build/usr/lib/")
+          file(COPY "./linux/hicolor" DESTINATION "./build/usr/share/icons/")
+          file(COPY "./linux/Sync-my-L2P.desktop" DESTINATION "./build/usr/share/applications/")
+
+          # Make sure to convert DOS linebreaks to unix
+          execute_process(COMMAND dos2unix Sync-my-L2P.desktop WORKING_DIRECTORY ./build/usr/share/applications/)
           
-          set(ENV{PATH} "$ENV{GITHUB_WORKSPACE}/linux/squashfs-root/usr/bin/:$ENV{PATH}")
-
-          file(MAKE_DIRECTORY "linux/usr/bin")
-          file(COPY "./bin/Sync-my-L2P" DESTINATION "./linux/usr/bin/")
-
-          file(COPY "./linux/lib/" DESTINATION "./linux/squashfs-root/usr/lib/" FILES_MATCHING PATTERN lib*)
-          file(REMOVE_RECURSE ./linux/lib/)
-
-          set(ENV{VERSION} "${{ steps.version.outputs.humanreadable }}")
-          execute_process(COMMAND ./squashfs-root/AppRun ./usr/bin/Sync-my-L2P -verbose=1 -appimage WORKING_DIRECTORY ./linux/)
-
+          # Produce AppImage
+          execute_process(COMMAND ./squashfs-root/AppRun ../build/usr/share/applications/Sync-my-L2P.desktop -verbose=2 -appimage WORKING_DIRECTORY ./linux/)
+          
           file(RENAME "./linux/Sync-my-L2P-$ENV{VERSION}-x86_64.AppImage" "${artifact_path}")
 
         elseif ("${{ runner.os }}" STREQUAL "macOS")

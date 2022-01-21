@@ -24,6 +24,7 @@
 #include "qslog/QsLog.h"
 #include "utils.h"
 #include "version.h"
+#include "urls.h"
 
 
 MyMainWindow::MyMainWindow(QWidget *parent):
@@ -143,8 +144,9 @@ void MyMainWindow::checkForUpdate()
 {
     int currentVersion = PRODUCT_VERSION_CODE;
 
+    QUrl updateUrl = appUpdateUrl;
     QNetworkAccessManager manager;
-    QNetworkRequest request(QUrl("https://www.syncmyl2p.de/version.txt"));
+    QNetworkRequest request(updateUrl);
     request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     QEventLoop newLoop;
     QNetworkReply *reply = manager.get(request);
@@ -182,10 +184,10 @@ void MyMainWindow::checkForUpdate()
                                             tr("Neue Version verfügbar!") + " (v" + replyMessage +")",
                                             tr("Auf der offiziellen Webseite ist eine neue Version verfügbar!\n"
                                                "Diese Nachricht kannst du in den Optionen deaktivieren.\n"
-                                               "Jetzt https://www.syncmyl2p.de/ aufrufen?"));
+                                               "Jetzt %1 aufrufen?").arg(releaseUrl));
         if (button == QMessageBox::Yes)
         {
-            QDesktopServices::openUrl(QUrl("https://www.syncmyl2p.de/"));
+            QDesktopServices::openUrl(QUrl(releaseUrl));
         }
     }
     else

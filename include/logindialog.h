@@ -29,9 +29,9 @@ public slots:
     void run(Login *login);
 
 private slots:
-    void checkL2PAvailability();
+    //void checkL2PAvailability(); /// deprecated
     void checkMoodleAvailability();
-    void availabilityL2PSlot(QNetworkReply*);
+    //void availabilityL2PSlot(QNetworkReply*); /// deprecated
     void availabilityMoodleSlot(QNetworkReply*);
     void failedSlot();
     void succededSlot();
@@ -44,7 +44,6 @@ private:
 
     // Pointer to Class responsible for the login
     Login *login;
-    Availability l2pAvailable;
     Availability moodleAvailable;
 };
 
