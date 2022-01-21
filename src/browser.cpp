@@ -675,6 +675,7 @@ void Browser::on_dataTreeView_customContextMenuRequested(const QPoint &pos)
     if (RightClickedItem->type() == courseItem)
     {
         newCustomContextMenu.addAction(tr("Veranstaltungsseite öffnen"), this, SLOT(openCourse()));
+        newCustomContextMenu.addAction(tr("Ordner öffnen"), this, SLOT(openFile()));
     }
 
     // Öffnen des Elements lokal oder in RWTHmoodle

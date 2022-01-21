@@ -219,12 +219,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="723"/>
+        <location filename="../src/browser.cpp" line="678"/>
+        <source>Ordner öffnen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/browser.cpp" line="734"/>
         <source>Opening local file: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="783"/>
+        <location filename="../src/browser.cpp" line="801"/>
         <source>Finalized pulling data. Checking local state...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -264,7 +269,7 @@
         <translation type="vanished">Itemrequest un API: </translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="678"/>
+        <location filename="../src/browser.cpp" line="677"/>
         <source>Veranstaltungsseite öffnen</source>
         <translation>Veranstaltungsseit opmaachen</translation>
     </message>
@@ -360,11 +365,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/info.ui" line="163"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/Sync-my-L2P/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../gui/info.ui" line="32"/>
         <source>Über Sync-my-L²P</source>
         <translation type="unfinished"></translation>
@@ -372,6 +372,11 @@
     <message>
         <location filename="../gui/info.ui" line="153"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Offizielle Webseite: &lt;br/&gt;&lt;a href=&quot;https://www.SyncMyL2P.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.SyncMyL2P.de&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/info.ui" line="163"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/rwthmoodle/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -620,7 +625,7 @@
     </message>
     <message>
         <location filename="../src/login.cpp" line="226"/>
-        <source>Du hast Sync-my-RWTHmoodle noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
+        <source>Du hast Sync-my-L2P noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -717,7 +722,7 @@
     <name>MyMainWindow</name>
     <message>
         <location filename="../gui/mymainwindow.ui" line="26"/>
-        <source>Sync-my-RWTHmoodle</source>
+        <source>Sync-my-L2P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -832,11 +837,6 @@ Jetzt %1 aufrufen?</source>
         <translation>Duerchsichen</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="274"/>
-        <source>Über Sync-my-RWTHmoodle</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Filter für Rubriken</source>
         <translation type="vanished">Filter fir Rubriken</translation>
     </message>
@@ -940,8 +940,9 @@ Jetzt %1 aufrufen?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../gui/options.ui" line="274"/>
         <source>Über Sync-my-L2P</source>
-        <translation type="vanished">Iwwer Sync-my-L2P</translation>
+        <translation>Iwwer Sync-my-L2P</translation>
     </message>
     <message>
         <location filename="../src/options.cpp" line="25"/>
