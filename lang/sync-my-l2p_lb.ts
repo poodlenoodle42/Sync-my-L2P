@@ -170,12 +170,12 @@
         <translation type="vanished">Et kënne e puer Dateie feelen. Dëse Feeler ass net duerch Sync-my-L2P verschëld an ass bekannt. Klick nach eng Kéier op Aktualiséieren bis dëse Feeler net méi optrëtt.</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="116"/>
+        <location filename="../src/browser.cpp" line="115"/>
         <source>Downloadverzeichnis fehlt!</source>
         <translation>Downloadverzeichnis feelt!</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="117"/>
+        <location filename="../src/browser.cpp" line="116"/>
         <source>Download unmöglich, da kein Zielverzeichnis angegeben wurde.</source>
         <translation>Download net méiglech, well keen Zielverzeichnis ugin ass.</translation>
     </message>
@@ -184,65 +184,79 @@
         <translation type="vanished">Kann net synchroniséieren, well keen Downloadverzeichnis ugin ass</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="128"/>
+        <location filename="../src/browser.cpp" line="127"/>
         <source>Kann Verzeichnis nicht erzeugen. Download abgebrochen.</source>
         <translation>Ka Verzeichnis net erzeugen. Download ofgebrach,</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="145"/>
+        <location filename="../src/browser.cpp" line="144"/>
         <source>Kann nicht synchronisieren</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="146"/>
+        <location filename="../src/browser.cpp" line="145"/>
         <source>Keine Dateien zur Synchronisation verfügbar.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="166"/>
-        <source>Nachfragen</source>
+        <location filename="../src/browser.cpp" line="340"/>
+        <source>Synchronisation mit RWTHmoodle abgeschlossen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="167"/>
-        <source>Ja</source>
+        <location filename="../src/browser.cpp" line="611"/>
+        <source>Pfad zur Datei &quot;%1&quot; enthält mehr als 260 Zeichen. Wenn die Datei heruntergeladen wird, kann sie von den meisten Programmen nicht geöffnet und von Windows nicht so einfach gelöscht werden. Wenn möglich, ändere dein Downloadverzeichnis auf einen Pfad mit weniger Zeichen! Datei trotzdem herunterladen? (Du kannst in den Optionen das Standardverhalten ändern.)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="232"/>
+        <location filename="../src/browser.cpp" line="624"/>
+        <source>Datei überschreiben?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/browser.cpp" line="625"/>
+        <source>Für die Datei &quot;%1&quot; steht eine aktualisierte Version zum Download bereit. Soll die lokale Datei überschrieben werden? Hierbei gehen bisherige Änderungen verloren! (Du kannst in den Einstellungen das Standardverhalten ändern.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/browser.cpp" line="723"/>
+        <source>Opening local file: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/browser.cpp" line="783"/>
+        <source>Finalized pulling data. Checking local state...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/browser.cpp" line="235"/>
         <source>Verzeichnis nicht erstellbar!</source>
         <translation>Verzeichnis net erstellbar!</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="232"/>
+        <location filename="../src/browser.cpp" line="235"/>
         <source>Kann folgendes Verzeichnis nicht erstellen: </source>
         <translation>Ka folgend Verzeichnis net erstellen: </translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="233"/>
+        <location filename="../src/browser.cpp" line="236"/>
         <source>Verzeichnis nicht erstellbar: </source>
         <translation>Verzeichnis net erstellbar: </translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="311"/>
         <source>Synchronisation mit dem L2P der RWTH Aachen abgeschlossen.</source>
-        <translation>Synchronisation mat dem L2P vun der RWTH Aachen ofgeschloss.</translation>
+        <translation type="vanished">Synchronisation mat dem L2P vun der RWTH Aachen ofgeschloss.</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="314"/>
+        <location filename="../src/browser.cpp" line="343"/>
         <source>Es wurden %1 von %2 eingebundenen Dateien synchronisiert.
 (Dieses Fenster schließt nach 10 Sek. automatisch.)</source>
         <translation>Et goufen %1 vun %2 agebonnen Dateien synchroniséiert.
 (Dës Fënster geet no 10 Sek. automatesch zou.)</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="581"/>
+        <location filename="../src/browser.cpp" line="610"/>
         <source>Datei herunterladen?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/browser.cpp" line="582"/>
-        <source>Pfad zur Datei &quot;%1&quot; enthält mehr als 260 Zeichen. Wenn die Datei heruntergeladen wird, kann sie von den meisten Programmen nicht geöffnet und von Windows nicht so einfach gelöscht werden. Wenn möglich, ändere dein Downloadverzeichnis auf einen Pfad mit weniger Zeichen! Datei trotzdem herunterladen? Du kannst in den Option das Standardverhalten für solche Fälle festlegen.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -250,29 +264,19 @@
         <translation type="vanished">Itemrequest un API: </translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="664"/>
+        <location filename="../src/browser.cpp" line="678"/>
         <source>Veranstaltungsseite öffnen</source>
         <translation>Veranstaltungsseit opmaachen</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="670"/>
+        <location filename="../src/browser.cpp" line="684"/>
         <source>Öffnen</source>
         <translation>Opmaachen</translation>
     </message>
     <message>
-        <location filename="../src/browser.cpp" line="675"/>
+        <location filename="../src/browser.cpp" line="689"/>
         <source>Link kopieren</source>
         <translation>Link kopéieren</translation>
-    </message>
-    <message>
-        <location filename="../src/browser.cpp" line="681"/>
-        <source>Nachricht anzeigen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/browser.cpp" line="688"/>
-        <source>Nachricht im Quelltext anzeigen</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -283,22 +287,30 @@
         <translation>%v/%m KBs</translation>
     </message>
     <message>
-        <location filename="../gui/dateidownloader.ui" line="148"/>
         <source>Download Datei 12/54</source>
-        <translation>Download Datei 12/54</translation>
+        <translation type="vanished">Download Datei 12/54</translation>
     </message>
     <message>
-        <location filename="../gui/dateidownloader.ui" line="201"/>
         <source>Grundgebiete der Grundgebiete</source>
-        <translation>Grondgebieter vun de Grondgebieter</translation>
+        <translation type="vanished">Grondgebieter vun de Grondgebieter</translation>
     </message>
     <message>
-        <location filename="../gui/dateidownloader.ui" line="254"/>
+        <location filename="../gui/dateidownloader.ui" line="149"/>
+        <source>Warte auf Download</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/dateidownloader.ui" line="202"/>
+        <source>Warten ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/dateidownloader.ui" line="255"/>
         <source>Datei.pdf</source>
         <translation>Datei.pdf</translation>
     </message>
     <message>
-        <location filename="../gui/dateidownloader.ui" line="273"/>
+        <location filename="../gui/dateidownloader.ui" line="274"/>
         <source>Abbrechen</source>
         <translation>Ofbriechen</translation>
     </message>
@@ -307,7 +319,7 @@
     <name>FileDownloader</name>
     <message>
         <location filename="../src/filedownloader.cpp" line="48"/>
-        <source>Starte Download von</source>
+        <source>Starte Download von </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -338,13 +350,18 @@
         <translation type="vanished">Iwwer Sync-my-L2P</translation>
     </message>
     <message>
+        <location filename="../gui/info.ui" line="99"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Synchronsiere mit wenigen &lt;br/&gt;Klicks deine Dateien&lt;br/&gt;aus dem E-Learning der RWTH &lt;br/&gt;Aachen mit deinem Rechner.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../gui/info.ui" line="138"/>
         <source>Kontakt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../gui/info.ui" line="163"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Offizielle Facebookpage: &lt;br/&gt;&lt;a href=&quot;http://www.facebook.de/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://www.facebook.de/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/Sync-my-L2P/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/rwthmoodle/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -353,32 +370,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/info.ui" line="99"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Synchronsiere mit wenigen &lt;br/&gt;Klicks deine Dateien&lt;br/&gt;aus dem L²P der RWTH &lt;br/&gt;Aachen mit deinem Rechner.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../gui/info.ui" line="153"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Offizielle Webseite: &lt;br/&gt;&lt;a href=&quot;https://www.SyncMyL2P.de&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://www.SyncMyL2P.de&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/info.ui" line="173"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quellcode: &lt;br/&gt;&lt;a href=&quot;https://github.com/Sync-my-L2P/Sync-my-L2P&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/RobertKrajewski/Sync-my-L2P&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/info.ui" line="183"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sync-my-L2P übersetzen:&lt;br/&gt;&lt;a href=&quot;https://sync-my-l2p.oneskyapp.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://sync-my-l2p.oneskyapp.com/&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/info.ui" line="248"/>
+        <location filename="../gui/info.ui" line="227"/>
         <source>Lizenz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/info.ui" line="206"/>
+        <location filename="../gui/info.ui" line="186"/>
         <source>Mitwirkende</source>
         <translation type="unfinished"></translation>
     </message>
@@ -386,125 +388,96 @@
 <context>
     <name>L2pItemModel</name>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="58"/>
-        <source>Sende Request für Veranstaltungen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/l2pitemmodel.cpp" line="82"/>
+        <location filename="../src/l2pitemmodel.cpp" line="57"/>
         <source>Sende Request für Veranstaltungen von Moodle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="112"/>
-        <source>Sende Request für aktive Features</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/l2pitemmodel.cpp" line="157"/>
-        <source>Erstellter Moodle-Request:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/l2pitemmodel.cpp" line="174"/>
+        <location filename="../src/l2pitemmodel.cpp" line="122"/>
         <source>Vermuteter Pfad der Progammdaten: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="180"/>
+        <location filename="../src/l2pitemmodel.cpp" line="128"/>
         <source>Kann keine Daten von Festplatte laden</source>
         <translation type="unfinished">Ka keng Dateien vun der Festplack lueden</translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="189"/>
+        <location filename="../src/l2pitemmodel.cpp" line="137"/>
         <source>Geladene Datei enthält keine Daten.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="198"/>
+        <location filename="../src/l2pitemmodel.cpp" line="146"/>
         <source>Kann Daten von Festplatte nicht fehlerfrei einlesen: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="228"/>
+        <location filename="../src/l2pitemmodel.cpp" line="176"/>
         <source>Pfad nicht erstellbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="229"/>
+        <location filename="../src/l2pitemmodel.cpp" line="177"/>
         <source>Konnte Pfad für Speicherung der Kursinformationen nicht erstellen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="235"/>
+        <location filename="../src/l2pitemmodel.cpp" line="183"/>
         <source>Kursinformationen nicht speicherbar.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="331"/>
-        <location filename="../src/l2pitemmodel.cpp" line="483"/>
-        <location filename="../src/l2pitemmodel.cpp" line="556"/>
+        <location filename="../src/l2pitemmodel.cpp" line="323"/>
         <source>Beim Abruf der Veranstaltungen ist ein Fehler aufgetreten</source>
         <translation type="unfinished">Beim Ofruff vun der Veranstaltung ass ee Feeler opgetrueden</translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="335"/>
         <source>Veranstaltungen empfangen</source>
-        <translation type="unfinished">Veranstaltungen empfaangen</translation>
+        <translation type="obsolete">Veranstaltungen empfaangen</translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="357"/>
+        <location filename="../src/l2pitemmodel.cpp" line="279"/>
         <source>Beim Abruf der Moodle-Veranstaltungen ist ein Fehler aufgetreten</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="361"/>
+        <location filename="../src/l2pitemmodel.cpp" line="283"/>
         <source>Moodle-Veranstaltungen empfangen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="463"/>
-        <source>Dateiinformationen empfangen: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/l2pitemmodel.cpp" line="470"/>
-        <source>Dateiinformationen geparst: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/l2pitemmodel.cpp" line="478"/>
-        <location filename="../src/l2pitemmodel.cpp" line="551"/>
+        <location filename="../src/l2pitemmodel.cpp" line="319"/>
         <source>SSL Fehler für: </source>
         <translation type="unfinished">SSL Feeler fir: </translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="536"/>
+        <location filename="../src/l2pitemmodel.cpp" line="304"/>
         <source>Moodle-Dateiinformationen empfangen: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="543"/>
+        <location filename="../src/l2pitemmodel.cpp" line="105"/>
+        <source>Erstellter Moodle-Request: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/l2pitemmodel.cpp" line="311"/>
         <source>Moodle-Dateiinformationen geparst: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="622"/>
-        <source>Erstellter Request:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/l2pitemmodel.cpp" line="635"/>
+        <location filename="../src/l2pitemmodel.cpp" line="382"/>
         <source>Unerwartete Serverantwort erhalten</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="674"/>
+        <location filename="../src/l2pitemmodel.cpp" line="406"/>
         <source>Serverantwort wurde unbekannter Typ zugeordnet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/l2pitemmodel.cpp" line="688"/>
+        <location filename="../src/l2pitemmodel.cpp" line="420"/>
         <source>Aktualisierung beendet</source>
         <translation type="unfinished"></translation>
     </message>
@@ -647,7 +620,7 @@
     </message>
     <message>
         <location filename="../src/login.cpp" line="226"/>
-        <source>Du hast Sync-my-L2P noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
+        <source>Du hast Sync-my-RWTHmoodle noch nicht die Berechtigung erteilt, auf Moodle zuzugreifen. Bitte logge dich neu ein.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -671,8 +644,12 @@
     </message>
     <message>
         <location filename="../gui/logindialog.ui" line="30"/>
+        <source>Überprüfe Erreichbarkeit von RWTHmoodle...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Überprüfe Erreichbarkeit des L2P...</source>
-        <translation>Iwwerpréiwen d&apos;Erreechbarkeet vum L2P...</translation>
+        <translation type="vanished">Iwwerpréiwen d&apos;Erreechbarkeet vum L2P...</translation>
     </message>
     <message>
         <source>Erreichbarkeitsrequest</source>
@@ -687,68 +664,51 @@
         <translation type="vanished">Feeler: L2P net erreechbar. Genaue Feeler:</translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="38"/>
-        <source>L2P Erreichbarkeitsrequest</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/logindialog.cpp" line="51"/>
+        <location filename="../src/logindialog.cpp" line="37"/>
         <source>Moodle Erreichbarkeitsrequest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="78"/>
-        <source>L2P nicht erreichbar. Genauer Fehler: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/logindialog.cpp" line="79"/>
-        <location filename="../src/logindialog.cpp" line="102"/>
+        <location filename="../src/logindialog.cpp" line="60"/>
         <source>Inhalt der Antwort: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="80"/>
         <source>Fehler: L2P nicht erreichbar.</source>
-        <translation>Feeler: L2P net erreechbar.</translation>
+        <translation type="vanished">Feeler: L2P net erreechbar.</translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="85"/>
-        <source>L2P erreichbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/logindialog.cpp" line="101"/>
+        <location filename="../src/logindialog.cpp" line="59"/>
         <source>Moodle nicht erreichbar. Genauer Fehler: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="103"/>
+        <location filename="../src/logindialog.cpp" line="61"/>
         <source>Fehler: Moodle nicht erreichbar.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="108"/>
+        <location filename="../src/logindialog.cpp" line="66"/>
         <source>Moodle erreichbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="116"/>
+        <location filename="../src/logindialog.cpp" line="74"/>
         <source>Login fehlgeschlagen.</source>
         <translation>Login feelgeschloen. </translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="122"/>
+        <location filename="../src/logindialog.cpp" line="80"/>
         <source>Login erfolgreich abgeschlossen!</source>
         <translation>Login erfollegräich ofgeschloss!</translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="139"/>
+        <location filename="../src/logindialog.cpp" line="97"/>
         <source>Authentifizierung notwendig. Browser öffnet automatisch.</source>
         <translation>Authentifizierung noutwendeg. Browser geet automatesch op.</translation>
     </message>
     <message>
-        <location filename="../src/logindialog.cpp" line="145"/>
+        <location filename="../src/logindialog.cpp" line="103"/>
         <source>Einloggen...</source>
         <translation>Aloggen.</translation>
     </message>
@@ -757,7 +717,7 @@
     <name>MyMainWindow</name>
     <message>
         <location filename="../gui/mymainwindow.ui" line="26"/>
-        <source>Sync-my-L²P</source>
+        <source>Sync-my-RWTHmoodle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -786,47 +746,46 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Wëllkomm bei Sync-My-L²P!&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;An dësem Tab fënnt sech eng kuerz Uleedung fir Éischtbenotzer vun dësem Programm.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Schnellstart&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Wann s du direkt wëlls lassleeën, féier einfach folgend dräi Schrëtter duerch:&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; text-decoration: underline;&quot;&gt;1. Aloggen&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Klick am Tab &amp;quot;Astellungen&amp;quot; op de Knäppchen op den Knäppchen &amp;quot;Aloggen&amp;quot;.Kuerz drop geet däi Browser op an du gëss opgefuerdert, dech mat denger TIM-Kennung ze authentifizeieren. Dono muss du Sync-my-L²P authoriseieren, fir datt de Programm op deng Dateien am L²P zougräife kann. Esoubal s du och dëst erleedegt hues, kanns du de Browser zou maachen an an de Programm zeréckgoen.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; text-decoration: underline;&quot;&gt;2. Daten aktualiséieren an auswielen.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Nom erfollegräichen Login ginn automatesch all deng Coursen aus dem L²P ofgeruff. Dëst kann ee Moment daueren. Esoubal d&apos;Aktualiséierung fäerdeg ass, kanns du d&apos;ofgeruffen Daten ukucken an eenzel Dateien/Dossieren/Coursen/Semester vum Download ausschléissen. Och kanns du Filter fir Gréisst an Ännerungsdatum definéieren.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; text-decoration: underline;&quot;&gt;3. Download&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Fir elo deng Dateien ze downloaden, musst du nach een Downloaddossier definéieren. Dofir klicks de am Tab &amp;quot;Astellungen&amp;quot; op de Knäppchen &amp;quot;Duerchsichen&amp;quot;an wiels en Dossier aus. Elo muss du nëmmen nach am Tab &amp;quot;Dateibrowser&amp;quot; op de Knäppchen &amp;quot;downloaden&amp;quot; drécken ab Sync-my-L²P lued all ausgewielten Dateien fir dech erof.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;Tipps an Tricks&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;D&apos;&lt;/span&gt;&lt;span style=&quot; font-size:10pt; text-decoration: underline;&quot;&gt;Faarw vun der Datei&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;gëtt der Informatiounen iwwert den aktuelle Status vun de Dateien. Rout bedeit &amp;quot;net downloaden&amp;quot;, Schwaarz sinn nei, net gedownloaten Dateien a Gréng gëtt fir scho gedownloaten Dateie benotzt.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Du kanns duerch en &lt;/span&gt;&lt;span style=&quot; font-size:10pt; text-decoration: underline;&quot;&gt;Doppelklick&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; op Dateien dëss einfach opmaachen.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;Am Tab &lt;/span&gt;&lt;span style=&quot; font-size:10pt; text-decoration: underline;&quot;&gt;Astellungen&lt;/span&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt; fannen sech e puer Optiounen, mat deenes du Sync-my-L²P nach méi komfortabel kanns maachen.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../src/mymainwindow.cpp" line="158"/>
+        <location filename="../src/mymainwindow.cpp" line="165"/>
         <source>Konnte Version nicht überprüfen:
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mymainwindow.cpp" line="163"/>
+        <location filename="../src/mymainwindow.cpp" line="170"/>
         <source>Aktuelle Version laut Server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mymainwindow.cpp" line="177"/>
+        <location filename="../src/mymainwindow.cpp" line="184"/>
         <source>Neue Version verfügbar!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mymainwindow.cpp" line="178"/>
+        <location filename="../src/mymainwindow.cpp" line="185"/>
         <source>Auf der offiziellen Webseite ist eine neue Version verfügbar!
 Diese Nachricht kannst du in den Optionen deaktivieren.
-Jetzt https://www.syncmyl2p.de/ aufrufen?</source>
+Jetzt %1 aufrufen?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mymainwindow.cpp" line="188"/>
+        <location filename="../src/mymainwindow.cpp" line="195"/>
         <source>Diese Version ist aktuell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/mymainwindow.cpp" line="214"/>
+        <location filename="../src/mymainwindow.cpp" line="221"/>
         <source>Läuft im Hintergrund weiter.</source>
         <translation>Leeft am Hannergrond weider.</translation>
     </message>
     <message>
-        <location filename="../src/mymainwindow.cpp" line="241"/>
+        <location filename="../src/mymainwindow.cpp" line="248"/>
         <source>wechsle Sprache auf </source>
         <translation>Wiessel Sprooch op</translation>
     </message>
     <message>
-        <location filename="../src/mymainwindow.cpp" line="244"/>
         <source>Systemsprache</source>
-        <translation>Systemsprooch</translation>
+        <translation type="vanished">Systemsprooch</translation>
     </message>
 </context>
 <context>
@@ -838,7 +797,7 @@ Jetzt https://www.syncmyl2p.de/ aufrufen?</source>
     </message>
     <message>
         <location filename="../gui/options.ui" line="26"/>
-        <location filename="../src/options.cpp" line="300"/>
+        <location filename="../src/options.cpp" line="246"/>
         <source>Status: ausgeloggt</source>
         <translation>Status: ausgeloggt</translation>
     </message>
@@ -873,39 +832,29 @@ Jetzt https://www.syncmyl2p.de/ aufrufen?</source>
         <translation>Duerchsichen</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="124"/>
+        <location filename="../gui/options.ui" line="274"/>
+        <source>Über Sync-my-RWTHmoodle</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Filter für Rubriken</source>
-        <translation>Filter fir Rubriken</translation>
+        <translation type="vanished">Filter fir Rubriken</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="140"/>
         <source>Übungen</source>
-        <translation>Übungen</translation>
+        <translation type="vanished">Übungen</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="150"/>
         <source>Lernmaterialien</source>
-        <translation>Léiermaterial</translation>
+        <translation type="vanished">Léiermaterial</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="160"/>
         <source>Medienbibliothek</source>
-        <translation>Mideibibliothéik</translation>
+        <translation type="vanished">Mideibibliothéik</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="130"/>
         <source>Gemeinsame Dokumente</source>
-        <translation>Gemeinsam Dokumenter</translation>
-    </message>
-    <message>
-        <location filename="../gui/options.ui" line="177"/>
-        <source>E-Mails</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/options.ui" line="170"/>
-        <source>Ankündigungen</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Gemeinsam Dokumenter</translation>
     </message>
     <message>
         <source>E-Mail-Anhänge</source>
@@ -916,114 +865,126 @@ Jetzt https://www.syncmyl2p.de/ aufrufen?</source>
         <translation type="vanished">Ukënnegungs-Unhäng</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="194"/>
+        <location filename="../gui/options.ui" line="124"/>
         <source>Automatisation</source>
         <translation>Automatisation</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="203"/>
+        <location filename="../gui/options.ui" line="133"/>
         <source>Einloggen beim Programmstart</source>
         <translation>Alogge beim Programmstart</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="216"/>
+        <location filename="../gui/options.ui" line="146"/>
         <source>Synchronisieren beim Programmstart</source>
         <translation>Synchroniséiere beim Programmstart</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="223"/>
+        <location filename="../gui/options.ui" line="153"/>
         <source>Nach der Synchronisation beenden</source>
         <translation>No der Synchronisatioun zoumaachen</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="233"/>
+        <location filename="../gui/options.ui" line="163"/>
         <source>Sonstiges</source>
         <translation>Soss eppes</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="262"/>
+        <location filename="../gui/options.ui" line="182"/>
         <source>Beim Minimieren im Tray verschwinden</source>
         <translation>Beim Miniméieren am Tray verschwannen</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="239"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wenn im L2P eine neue Version einer Datei vorhanden ist, wird die alte Version auf der Festplatte überschrieben.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;ACHTUNG:&lt;/span&gt; Beim Überschreiben gehen eigene Änderungen an den Dateien (Kommentare, etc.) verloren.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wann am L2P eng nei Versioun vun enger Datei ass, gëtt déi al Versioun op der Festplack iwwerschriwwen.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;OPPASSEN:&lt;/span&gt; Beim Iwwerschreiwen gi verschidden Ännerungen un den Dateien (komplementarer, etc.) verlueren.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation type="vanished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Wann am L2P eng nei Versioun vun enger Datei ass, gëtt déi al Versioun op der Festplack iwwerschriwwen.&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;OPPASSEN:&lt;/span&gt; Beim Iwwerschreiwen gi verschidden Ännerungen un den Dateien (komplementarer, etc.) verlueren.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="184"/>
-        <source>Tutor Dokumente</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../gui/options.ui" line="242"/>
         <source>Dateien überschreiben</source>
-        <translation>Datei iwwerschreiwen</translation>
+        <translation type="vanished">Datei iwwerschreiwen</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="280"/>
+        <location filename="../gui/options.ui" line="200"/>
         <source>Sprache:</source>
         <translation>Sprooch:</translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="249"/>
+        <location filename="../gui/options.ui" line="169"/>
         <source>Beim Start nach neuer Version suchen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="302"/>
+        <location filename="../gui/options.ui" line="245"/>
+        <location filename="../gui/options.ui" line="255"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sollen lokale Dateien mit neueren Versionen überschrieben werden?&lt;/p&gt;&lt;p&gt;Vom Nutzer gemachte Änderungen werden hierbei überschrieben und können nicht wieder hergestellt werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="248"/>
+        <source>Dateien überschreiben:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../gui/options.ui" line="264"/>
         <source>Nur aktuelles Semester anzeigen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="311"/>
-        <location filename="../gui/options.ui" line="321"/>
+        <location filename="../gui/options.ui" line="224"/>
+        <location filename="../gui/options.ui" line="234"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sollen Dateien mit zu langen Pfaden trotzdem heruntergeladen werden?&lt;/p&gt;&lt;p&gt;In älteren Windows-Versionen sind Dateien mit über 260 Zeichen langen Pfaden oft problematisch. Sie können meist nicht geöffnet oder gelöscht werden.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="314"/>
+        <location filename="../gui/options.ui" line="227"/>
         <source>Dateien mit zu langen Pfaden herunterladen:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../gui/options.ui" line="333"/>
         <source>Über Sync-my-L2P</source>
-        <translation>Iwwer Sync-my-L2P</translation>
+        <translation type="vanished">Iwwer Sync-my-L2P</translation>
     </message>
     <message>
-        <location filename="../src/options.cpp" line="26"/>
+        <location filename="../src/options.cpp" line="25"/>
+        <location filename="../src/options.cpp" line="297"/>
         <source>Systemsprache</source>
         <translation>Systemsprooch</translation>
     </message>
     <message>
-        <location filename="../src/options.cpp" line="33"/>
-        <location filename="../src/options.cpp" line="84"/>
+        <location filename="../src/options.cpp" line="31"/>
+        <location filename="../src/options.cpp" line="35"/>
+        <location filename="../src/options.cpp" line="291"/>
+        <location filename="../src/options.cpp" line="294"/>
         <source>Nachfragen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/options.cpp" line="34"/>
+        <location filename="../src/options.cpp" line="32"/>
+        <location filename="../src/options.cpp" line="36"/>
+        <location filename="../src/options.cpp" line="292"/>
+        <location filename="../src/options.cpp" line="295"/>
         <source>Ja</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/options.cpp" line="35"/>
+        <location filename="../src/options.cpp" line="33"/>
+        <location filename="../src/options.cpp" line="37"/>
+        <location filename="../src/options.cpp" line="293"/>
+        <location filename="../src/options.cpp" line="296"/>
         <source>Nein</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/options.cpp" line="194"/>
+        <location filename="../src/options.cpp" line="175"/>
         <source>Downloadverzeichnis auswählen</source>
         <translation>Downloadverzeichnis auswielen</translation>
     </message>
     <message>
-        <location filename="../src/options.cpp" line="317"/>
+        <location filename="../src/options.cpp" line="263"/>
         <source>Status: Login erfolgreich</source>
         <translation>Status: Login erfollegräich</translation>
     </message>
     <message>
-        <location filename="../src/options.cpp" line="331"/>
+        <location filename="../src/options.cpp" line="277"/>
         <source>Status: Login fehlgeschlagen</source>
         <translation>Status: Login feelgeschloen</translation>
     </message>
@@ -1031,85 +992,59 @@ Jetzt https://www.syncmyl2p.de/ aufrufen?</source>
 <context>
     <name>Parser</name>
     <message>
-        <location filename="../src/parser.cpp" line="64"/>
-        <location filename="../src/parser.cpp" line="189"/>
         <source>Kursinformationen leer bzw. nicht lesbar.</source>
-        <translation>Kursinformatiounen eidel bzw. net liesbar.</translation>
+        <translation type="vanished">Kursinformatiounen eidel bzw. net liesbar.</translation>
     </message>
     <message>
         <source>Status der Kursinformationen nicht ok.</source>
         <translation type="vanished">Status vun de Kursinformationen net ok.</translation>
     </message>
     <message>
-        <location filename="../src/parser.cpp" line="70"/>
         <source>Status der Kursinformationen nicht ok: </source>
-        <translation>Status vun de Kursinformationen net ok:</translation>
+        <translation type="vanished">Status vun de Kursinformationen net ok:</translation>
     </message>
     <message>
         <source>Veranstaltung </source>
         <translation type="vanished">Veranstaltung</translation>
     </message>
     <message>
-        <location filename="../src/parser.cpp" line="21"/>
-        <source>Featureinformationen leer bzw. nicht lesbar.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/parser.cpp" line="27"/>
-        <source>Status der Featureinformationen nicht ok: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/parser.cpp" line="94"/>
-        <location filename="../src/parser.cpp" line="139"/>
+        <location filename="../src/parser.cpp" line="63"/>
         <source>) hinzugefügt.</source>
         <translation>) bei gefügt.</translation>
     </message>
     <message>
-        <location filename="../src/parser.cpp" line="94"/>
-        <source>Veranstaltung</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/parser.cpp" line="107"/>
-        <location filename="../src/parser.cpp" line="553"/>
+        <location filename="../src/parser.cpp" line="31"/>
+        <location filename="../src/parser.cpp" line="78"/>
         <source>Moodle-Kursinformationen leer bzw. nicht lesbar.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/parser.cpp" line="113"/>
+        <location filename="../src/parser.cpp" line="37"/>
         <source>Status der Moodle-Kursinformationen nicht ok: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/parser.cpp" line="139"/>
+        <location filename="../src/parser.cpp" line="63"/>
         <source>Moodle-Veranstaltung</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/parser.cpp" line="176"/>
         <source>Antwort auf unbekannten Request erhalten: </source>
-        <translation>Äntwert op onbekannte Request erhal: </translation>
+        <translation type="vanished">Äntwert op onbekannte Request erhal: </translation>
     </message>
     <message>
-        <location filename="../src/parser.cpp" line="200"/>
         <source>Status der Kursinformationen nicht ok: 
 </source>
-        <translation>Status vun de Kursinformationen net ok.</translation>
+        <translation type="vanished">Status vun de Kursinformationen net ok.</translation>
     </message>
     <message>
-        <location filename="../src/parser.cpp" line="431"/>
-        <source>Ankündigung im L2P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/parser.cpp" line="559"/>
+        <location filename="../src/parser.cpp" line="84"/>
         <source>Status der Moodle-Kursinformationen nicht ok: 
 </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/parser.cpp" line="567"/>
+        <location filename="../src/parser.cpp" line="92"/>
         <source>Moodle-Kursinformationen enthalten einen Fehler: 
 </source>
         <translation type="unfinished"></translation>
@@ -1118,7 +1053,7 @@ Jetzt https://www.syncmyl2p.de/ aufrufen?</source>
 <context>
     <name>Utils</name>
     <message>
-        <location filename="../src/utils.cpp" line="147"/>
+        <location filename="../src/utils.cpp" line="141"/>
         <source>Unbekanntes Element auf der Ebene der Veranstaltungen: </source>
         <translation>Onbekanntent Element op dem Niveau von der Veranstaltung: </translation>
     </message>
@@ -1158,21 +1093,6 @@ Jetzt https://www.syncmyl2p.de/ aufrufen?</source>
     <message>
         <location filename="../gui/message.ui" line="123"/>
         <source>Musterthema</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/message.cpp" line="16"/>
-        <source>Nicht verfügbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/message.cpp" line="24"/>
-        <source>Nachricht offline nicht verfügbar!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/message.cpp" line="37"/>
-        <source>Bitte verbinde dich mit dem L²P, um die Nachricht zu lesen!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
