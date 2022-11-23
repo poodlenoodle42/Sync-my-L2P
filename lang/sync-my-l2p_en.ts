@@ -1064,7 +1064,7 @@ You can deactivate this message in the options tab.</translation>
     <message>
         <location filename="../src/options.cpp" line="263"/>
         <source>Status: Login erfolgreich</source>
-        <translation>Status: login was succesfull</translation>
+        <translation>Status: login was successful</translation>
     </message>
     <message>
         <location filename="../src/options.cpp" line="277"/>
