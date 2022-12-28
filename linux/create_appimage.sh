@@ -1,13 +1,10 @@
 #!/bin/bash
 cd linux
-wget https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage
-wget http://security.ubuntu.com/ubuntu/pool/main/i/icu/libicu52_52.1-3ubuntu0.8_amd64.deb
-dpkg -i libicu52_52.1-3ubuntu0.8_amd64.deb
-dos2unix Sync-my-L2P.desktop
-chmod a+x ./linuxdeployqt-continuous-x86_64.AppImage
-./linuxdeployqt-continuous-x86_64.AppImage --appimage-extract
-export PATH=/work/linux/squashfs-root/usr/bin/:$PATH
-mkdir -p usr/bin
-cp ../bin/Sync-my-L2P ./usr/bin/Sync-my-L2P
-squashfs-root/AppRun ./usr/bin/Sync-my-L2P -verbose=1 -appimage
 
+wget https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
+wget https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
+
+chmod +x linuxdeploy*.AppImage
+
+export APPIMAGE_EXTRACT_AND_RUN=1
+./linuxdeploy-x86_64.AppImage --appdir AppDir -l /usr/lib/x86_64-linux-gnu/libssl.so.1.1 -e ../bin/Sync-my-L2P -i sync-my-L2P.png -d Sync-my-L2P.desktop --plugin qt --output appimage
